@@ -1,0 +1,46 @@
+
+public class EncounterRunner {
+
+	//MonsterSheet(String setName, int setHP, int setAC, int init, int speed, int ref, int fort, int will)
+	//setMelee(int vsAC, int numDie, int type, int constant)
+
+	public static void main(String[]args){
+		
+		MonsterSheet cutter = new MonsterSheet("Cutter", 1, 16, 3, 6, 14, 12, 11);
+		cutter.setMelee(5, 0, 0, 4);
+		
+		MonsterSheet harley = new MonsterSheet("Harley Quinn", 29, 17, 5, 6, 15, 13, 12);
+		harley.setMelee(6, 1, 6, 2);
+		harley.setRanged(6, 1, 6, 2);
+	
+		MonsterSheet riddler = new MonsterSheet("Riddler", 29, 17, 5, 6, 15, 13, 12);
+		riddler.setMelee(6, 1, 6, 2);
+		riddler.setRanged(6, 1, 6, 2);
+		
+		MonsterSheet batgirl = new MonsterSheet("Batgirl", 29, 17, 5, 6, 15, 13, 12);
+		batgirl.setMelee(6, 1, 6, 2);
+		batgirl.setRanged(6, 1, 6, 2);
+		
+		MonsterSheet freeze = new MonsterSheet("Mr. Freeze", 29, 17, 5, 6, 15, 13, 12);
+		freeze.setMelee(6, 1, 6, 2);
+		freeze.setRanged(6, 1, 6, 2);
+		
+		MonsterSheet splug = new MonsterSheet("Splug", 29, 17, 5, 6, 15, 13, 12);
+		splug.setMelee(6, 1, 6, 2);
+		splug.setRanged(6, 1, 6, 2);
+		
+		MonsterSheet balgron = new MonsterSheet("Balgron", 46, 17, 10, 6, 17, 16, 15);
+		balgron.setMelee(9, 1, 6, 3);
+		balgron.setRanged(9, 1, 8, 4);
+		
+		batgirl.takeHit(3);
+		balgron.takeHit(19);
+		batgirl.takeHit(7);
+		balgron.takeHit(22);
+		splug.takeHit(4);
+		batgirl.takeHit(9);
+		cutter.melee();
+		
+		
+	}
+}

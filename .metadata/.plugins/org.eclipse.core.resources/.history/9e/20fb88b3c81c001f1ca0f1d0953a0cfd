@@ -1,0 +1,13 @@
+
+public class TesterStuff {
+	public static void main(String[]args){
+		Object anObject = new String("abc");
+		Object anotherObject = new Integer(50);
+		Integer n = (Integer)anObject;
+		String s = (String)anObject;
+		anObject = anotherObject;
+		String another = (String)anotherObject;
+		Integer anotherInt = (Integer)anObject;
+		System.out.println(n + " "+s+" "+another+" "+anotherInt);
+	}
+}

@@ -1,0 +1,61 @@
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class ArrayPriorityListTest {
+	
+	@Test
+	@SuppressWarnings("unchecked")
+	public void testSizeIsEmptyInsertAndGetElement(){
+		ArrayPriorityList<String> test1 = new ArrayPriorityList();
+		assertEquals(0, test1.size());
+		assertTrue(test1.isEmpty());
+		test1.insertElementAt(0, "TEST");
+		assertEquals(1, test1.size());
+		assertFalse(test1.isEmpty());
+		assertEquals("TEST", test1.getElementAt(0));
+		
+		ArrayPriorityList<Integer> test2 = new ArrayPriorityList();
+		Integer a = new Integer(15);
+		Integer b = new Integer(21);
+		test2.insertElementAt(0, a);
+		test2.insertElementAt(0, b);
+		assertEquals(2, test2.size());
+		assertEquals(b, test2.getElementAt(0));
+		assertEquals(a, test2.getElementAt(1));
+		for(int i=0; i<20; i++){
+			test2.insertElementAt(0, i);
+		}
+		assertEquals(22, test2.size());
+		assertEquals(new Integer(15), test2.getElementAt(21));
+		assertEquals(new Integer(18), test2.getElementAt(1));
+	}
+
+	@SuppressWarnings("unchecked")
+	@Test
+	public void testRemoveLowerRaiseTopLastToArray(){
+		
+		ArrayPriorityList<Integer> test3 = new ArrayPriorityList();
+		for(int i=0; i<20; i++){
+			test3.insertElementAt(0, i);
+		}
+		assertEquals(20, test3.size());
+		test3.removeElementAt(0);
+		assertEquals(19, test3.size());
+		assertEquals(new Integer(18), test3.getElementAt(0));
+		assertEquals(new Integer(0), test3.getElementAt(18));
+		test3.removeElementAt(18);
+		assertEquals(18, test3.size());
+		assertEquals(new Integer(1), test3.getElementAt(17));
+		
+		ArrayPriorityList<String> test4 = new ArrayPriorityList();
+		test4.insertElementAt(0, "Zero");
+		test4.insertElementAt(1, "One");
+		test4.insertElementAt(2, "Two");
+		test4.insertElementAt(3, "Three");
+		test4.insertElementAt(4, "Four");
+		test4.lowerPriorityOf(0);
+		assertEquals("One", test4.getElementAt(0));
+		assertEquals("Zero", test4.getElementAt(1));
+		
+	}
+}

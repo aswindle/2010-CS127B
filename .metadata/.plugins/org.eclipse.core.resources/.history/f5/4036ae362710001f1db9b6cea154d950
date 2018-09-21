@@ -1,0 +1,36 @@
+/*Alex Swindle
+ * C SC 127B
+ * Class that stores a movie title plus rating, with a simple title getter and toSting
+ */
+
+public class Movie {
+
+		//instance variables
+		private String title;
+		private int rating;
+		
+		//constructor; sets rating to 1 if rating invalid
+		public Movie(String setTitle, int setRating){
+			title = setTitle;
+			if(setRating>=1&&setRating<=5){
+				rating = setRating;
+			}
+			else{
+				rating = 1;
+			}
+		}
+		
+		//getter for title
+		public String getTitle(){
+			return title;
+		}
+		
+		//toString that prints rating as a # of  *'s
+		public String toString(){
+			String stars = "";
+			for(int i=1; i<=rating; i++){
+				stars+="*";
+			}
+			return title + " " + stars;
+		}
+}

@@ -1,0 +1,13 @@
+
+public interface MonsterStats {
+	
+	public void takeHit(int dmg);
+	
+	public void setMelee(int die, int numDie, int constant);
+	
+	public void setRanged(int die, int numDie, int constant);
+	
+	public int getInit();
+	
+	
+}

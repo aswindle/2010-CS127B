@@ -1,0 +1,72 @@
+/**
+ * The beginning of a unit test for MineSweeper.
+ * The one test method is used to further specify behavior of a few methods.
+ */
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+public class MineSweeperTest {
+
+	@Test
+	public void showExpectedBehaviorOfSomeMethods() {
+		boolean[][] b1 = {
+				{ false, false, false, false, false },
+				{ false, false, true,  true,  false },
+				{ false, false, false, true,  false },
+				{ false, false, false, true,  false },
+				{ false, false, false, false, false } };
+
+		// Use non random constructor
+		MineSweeper ms = new MineSweeper(b1);
+		// Mine Count
+		assertEquals(4, ms.getTotalMineCount());
+		// Adjacent mines
+		Tile one = ms.getTileAt(1,2);
+		assertEquals(2, one.getType());
+		assertTrue(ms.isMine(1, 2));
+		assertTrue(ms.isMine(1, 3));
+		assertTrue(ms.isMine(2, 3));
+		assertTrue(ms.isMine(3, 3));
+		assertEquals(0, ms.getAdjacentMines(0, 0));
+		assertEquals(1, ms.getAdjacentMines(0, 1));
+		assertEquals(2, ms.getAdjacentMines(0, 2));
+		assertEquals(2, ms.getAdjacentMines(0, 3));
+		assertEquals(1, ms.getAdjacentMines(0, 4));
+		assertEquals(0, ms.getAdjacentMines(1, 0));
+		assertEquals(1, ms.getAdjacentMines(1, 1));
+		assertEquals(2, ms.getAdjacentMines(1, 4));
+		assertEquals(0, ms.getAdjacentMines(2, 0));
+		assertEquals(1, ms.getAdjacentMines(2, 1));
+		assertEquals(4, ms.getAdjacentMines(2, 2));
+		assertEquals(3, ms.getAdjacentMines(2, 4));
+		assertEquals(0, ms.getAdjacentMines(3, 0));
+		assertEquals(0, ms.getAdjacentMines(3, 1));
+		assertEquals(2, ms.getAdjacentMines(3, 2));
+		assertEquals(2, ms.getAdjacentMines(3, 4));
+		assertEquals(0, ms.getAdjacentMines(4, 0));
+		assertEquals(0, ms.getAdjacentMines(4, 1));
+		assertEquals(1, ms.getAdjacentMines(4, 2));
+		assertEquals(1, ms.getAdjacentMines(4, 3));
+		assertEquals(1, ms.getAdjacentMines(4, 4));
+		// Click and see a few have cleared
+		assertFalse(ms.isVisible(0, 0));
+		assertFalse(ms.isVisible(0, 1));
+		assertFalse(ms.isVisible(1, 0));
+		assertFalse(ms.isVisible(1, 1));
+		ms.click(0, 0);
+		assertTrue(ms.isVisible(0, 0));
+		assertTrue(ms.isVisible(0, 1));
+		assertTrue(ms.isVisible(1, 0));
+		assertTrue(ms.isVisible(1, 1));
+
+		assertTrue(ms.isVisible(2, 0));
+		assertTrue(ms.isVisible(2, 1));
+		assertTrue(ms.isVisible(3, 0));
+		assertTrue(ms.isVisible(3, 1));
+		assertTrue(ms.isVisible(3, 2));
+		// Others may be visible
+	}
+}

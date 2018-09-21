@@ -1,0 +1,22 @@
+
+public class Diophantine {
+	
+	public String problem4(){
+		String result = "";
+		int found = 1;
+		{
+			for(int x=1; x<100; x++){
+				for(int y=1; y<100; y++)
+					for(int z=1; z<100; z++){
+						if((z*z-x*x)/2==y){
+							while(found<=5)
+								result+="Combo #" + found + ": x: " + x + " y: "+ y + " z: "+ z + '\n';
+								found++;
+								break;
+							}
+						}
+				}
+			}
+		return result;
+	}
+}

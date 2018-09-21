@@ -1,0 +1,113 @@
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+
+public class RecursionFunTest {
+	RecursionFun rf = new RecursionFun(); // Use rf in all test methods
+
+	@Test
+	public void testFibonacci() {
+		assertEquals(1, rf.fibonacci(1));
+		assertEquals(1, rf.fibonacci(2));
+		assertEquals(2, rf.fibonacci(3));
+		assertEquals(3, rf.fibonacci(4));
+		assertEquals(5, rf.fibonacci(5));
+	}
+	
+	@Test
+	public void testReciprocal(){
+		assertEquals(1.0, rf.addReciprocal(1), .000000001);
+		assertEquals(1.5, rf.addReciprocal(2), .000000001);
+		assertEquals(1.5 + 1/3.0, rf.addReciprocal(3), .000000001);
+		assertEquals(1.75 + 1/3.0, rf.addReciprocal(4), .000000001);
+	}
+	
+	@Test
+	public void testCombinations(){
+		assertEquals(1, rf.combinations(6, 6));
+		assertEquals(6, rf.combinations(6, 1));
+		assertEquals(3, rf.combinations(3, 2));
+		assertEquals(2598960, rf.combinations(52, 5));
+	}
+	
+	@Test
+	public void testGCD(){
+		assertEquals(1, rf.GCD(3, 10));
+		assertEquals(2, rf.GCD(4, 10));
+		assertEquals(3, rf.GCD(3, 12));
+		assertEquals(6, rf.GCD(6, 12));
+		assertEquals(6, rf.GCD(12, 6));
+		assertEquals(3, rf.GCD(24, 9));
+		assertEquals(3, rf.GCD(-24, 9));
+		assertEquals(3, rf.GCD(24, -9));
+		assertEquals(3, rf.GCD(-24, -9));
+		assertEquals(99, rf.GCD(99, 0));
+		assertEquals(99, rf.GCD(0, 99));
+		assertEquals(1, rf.GCD(0, 1));
+		assertEquals(1, rf.GCD(1, 0));
+	}
+	
+	@Test
+	public void testSubSentence(){
+		assertEquals("", rf.subsentence("blah ", 1, 0));
+		assertEquals("the dog ", rf.subsentence("the dog runs fast ", 0, 1));
+		assertEquals("the ", rf.subsentence("the dog runs fast ", 0, 0));
+		assertEquals("dog runs ", rf.subsentence("the dog runs fast ", 1, 2));
+		assertEquals("dog ", rf.subsentence("the dog runs fast ", 1, 1));
+		assertEquals("the dog runs fast ", rf.subsentence("the dog runs fast ", 0, 3));
+		assertEquals("fast ", rf.subsentence("the dog runs fast ", 3, 3));
+	}
+	
+	
+	@Test
+	public void testCommas(){
+		assertEquals("999", rf.intWithCommas(999));
+		assertEquals("1,000", rf.intWithCommas(1000));
+		assertEquals("1,000,000", rf.intWithCommas(1000000));
+		assertEquals("1", rf.intWithCommas(1));
+		assertEquals("10,001", rf.intWithCommas(10001));
+		assertEquals("-1,999", rf.intWithCommas(-1999));
+		
+	}
+	
+	
+	@Test
+	public void testSumArray(){
+		int[] x = { 1, 5, 7, 2, 3, 4 };
+		assertEquals( 0, rf.sumArray(x, 5, 0)); // No elements in range of 5 through 0
+		assertEquals(22, rf.sumArray(x, 0, 5)); // Indexes 0..5 represents all elements
+		assertEquals(13, rf.sumArray(x, 0, 2)); // First 3 elements
+		assertEquals( 9, rf.sumArray(x, 2, 3));
+	}
+	
+	@Test
+	public void testReverseArray(){
+		int[] a = { 2, 4, 6 };
+		rf.reverseArray(a);
+		assertEquals(6, a[0]);
+		assertEquals(4, a[1]);
+		assertEquals(2, a[2]);
+	}
+	
+	@Test
+	public void testArrayRange(){
+		assertEquals(2, rf.arrayRange(new int[] { 1, 2, 3 }));
+		assertEquals(2, rf.arrayRange(new int[] { 3, 2, 1 }));
+		assertEquals(0, rf.arrayRange(new int[] { 3 }));
+		assertEquals(3, rf.arrayRange(new int[] { -3, -2, -5, -4 }));
+		assertEquals(3, rf.arrayRange(new int[] { -2, -2, -5, -4 }));
+		assertEquals(0, rf.arrayRange(new int[]{}));
+	}
+
+	@Test
+	public void testBinarySearch(){
+		assertEquals(0, rf.binarySearch("A", new String[] {"A", "B", "C", "D", "E", "F"}));
+		assertEquals(1, rf.binarySearch("B", new String[] {"A", "B", "C", "D", "E", "F"}));
+		assertEquals(2, rf.binarySearch("C", new String[] {"A", "B", "C", "D", "E", "F"}));
+		//assertEquals(3, rf.binarySearch("D", new String[] {"A", "B", "C", "D", "E", "F"}));
+		//assertEquals(4, rf.binarySearch("E", new String[] {"A", "B", "C", "D", "E", "F"}));
+		assertEquals(5, rf.binarySearch("F", new String[] {"A", "B", "C", "D", "E", "F"}));
+		//assertEquals(-1, rf.binarySearch("G", new String[] {"A", "B", "C", "D", "E", "F"}));
+		//assertEquals(-1, rf.binarySearch("A", new String[] {"B", "C", "D", "E", "F"}));
+		//assertEquals(-1, rf.binarySearch("C", new String[] {"A", "B", "D", "E", "F"}));
+	}
+}

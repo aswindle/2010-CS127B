@@ -1,0 +1,57 @@
+public class Prime{
+
+
+	private long num;
+	private int[] array = new int[65];
+	private int size = 0;
+	private double sqrt = 0.0;	
+	
+	public Prime(long setNum){
+		num = setNum;
+		sqrt = Math.sqrt(num);
+	}
+	
+	public void setNum(long setNum){
+		num = setNum;
+		sqrt = Math.sqrt(num);
+	}
+
+	public boolean isPrime(long testNum){
+		num = testNum;
+		sqrt = Math.sqrt(num);
+		boolean done = true;
+		for(int i=0; i<array.length; i++){
+			array[i]=0;
+			}
+		size = 0;
+		int divisor = 2;
+	
+		for(int j=0; j<=65; j++){			
+			for(int i=divisor; i<=sqrt; i++){
+				if(num%i==0){
+					array[size]= i;
+					size++;
+					num = num/i;
+					sqrt = Math.sqrt(num);
+					array[size]= (int)num;
+					divisor = i;
+					done = false;
+					break;
+				}//end if
+			
+			}//end for
+			if(done){
+				break;
+			}
+		}//end outer for
+		for (int i=0; i<=size; i++){
+			System.out.print(array[i]+ " ");
+		}
+		System.out.println();
+		if (size==0){
+			return true;
+		}
+		return false;
+	}//end isPrime
+
+}

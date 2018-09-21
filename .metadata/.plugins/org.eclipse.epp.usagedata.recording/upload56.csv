@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+java.specification.version,sysinfo,,,"1.7",1264048865553
+java.vendor,sysinfo,,,"Sun Microsystems Inc.",1264048865553
+java.version,sysinfo,,,"1.7.0-ea",1264048865553
+java.vm.info,sysinfo,,,"mixed mode, sharing",1264048865553
+java.vm.name,sysinfo,,,"Java HotSpot(TM) Client VM",1264048865553
+java.vm.specification.name,sysinfo,,,"Java Virtual Machine Specification",1264048865553
+java.vm.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1264048865553
+java.vm.specification.version,sysinfo,,,"1.0",1264048865553
+java.vm.vendor,sysinfo,,,"Sun Microsystems Inc.",1264048865553
+java.vm.version,sysinfo,,,"16.0-b06",1264048865553
+executed,command,org.eclipse.ui.workbench.texteditor,3.5.0.v20090603,"org.eclipse.ui.edit.text.goto.lineEnd",1264049015750
+executed,command,org.eclipse.ui.workbench.texteditor,3.5.0.v20090603,"org.eclipse.ui.edit.text.goto.lineEnd",1264049020773
+executed,command,org.eclipse.ui.workbench.texteditor,3.5.0.v20090603,"org.eclipse.ui.edit.text.goto.lineEnd",1264049029649
+executed,command,org.eclipse.ui,3.5.1.M20090902-1000,"org.eclipse.ui.edit.copy",1264049494717
+executed,command,org.eclipse.ui,3.5.1.M20090902-1000,"org.eclipse.ui.edit.paste",1264049496246
+executed,command,org.eclipse.ui.workbench.texteditor,3.5.0.v20090603,"org.eclipse.ui.edit.text.goto.lineEnd",1264049501675
+executed,command,org.eclipse.ui.workbench.texteditor,3.5.0.v20090603,"org.eclipse.ui.edit.text.goto.lineEnd",1264049555963
+executed,command,org.eclipse.ui,3.5.1.M20090902-1000,"org.eclipse.ui.edit.paste",1264049569941
+executed,command,org.eclipse.ui.workbench.texteditor,3.5.0.v20090603,"org.eclipse.ui.edit.text.goto.lineEnd",1264049572281
+executed,command,org.eclipse.ui,3.5.1.M20090902-1000,"org.eclipse.ui.file.save",1264049683634
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264049695053
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264050385350
+started,bundle,org.eclipse.mylyn.java.ui,3.3.1.v20091215-0000-e3x,"org.eclipse.mylyn.java.ui",1264050560117
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264051100986
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264051101400

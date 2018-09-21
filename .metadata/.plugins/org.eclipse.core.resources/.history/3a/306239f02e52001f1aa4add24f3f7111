@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+
+public class BoggleConsole {
+
+	public static void main(String[] args){
+		Boggle game = new Boggle();
+		Scanner input = new Scanner(System.in);
+		String guesses = "";
+		System.out.println(game.getDiceTrayAsString());
+		guesses += input.next().toLowerCase();
+		while(!guesses.contains("zz")){
+			System.out.print("Enter a guess followed by a new line or 'ZZ' to end: ");
+		}
+		
+	}
+}

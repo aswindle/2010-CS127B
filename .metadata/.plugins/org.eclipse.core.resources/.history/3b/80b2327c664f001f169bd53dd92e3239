@@ -1,0 +1,27 @@
+
+public class EncounterRunner {
+
+	//MonsterSheet(String setName, int setHP, int setAC, int init, int speed, int ref, int fort, int will)
+	//setMelee(int vsAC, int numDie, int type, int constant)
+
+	public static void main(String[]args){
+		
+		MonsterSheet freeze = new MonsterSheet("Mr. Freeze", 29, 17, 5, 6, 15, 13, 12);
+		freeze.setMelee(6, 1, 6, 2);
+		freeze.setRanged(6, 1, 6, 2);
+		
+		MonsterSheet splug = new MonsterSheet("Splug", 29, 17, 5, 6, 15, 13, 12);
+		splug.setMelee(6, 1, 6, 2);
+		splug.setRanged(6, 1, 6, 2);
+		
+		MonsterSheet balgron = new MonsterSheet("Balgron", 46, 17, 10, 6, 17, 16, 15);
+		balgron.setMelee(9, 1, 6, 3);
+		balgron.setRanged(9, 1, 8, 4);
+		
+		splug.takeHit(4);
+		
+		
+		
+		
+	}
+}

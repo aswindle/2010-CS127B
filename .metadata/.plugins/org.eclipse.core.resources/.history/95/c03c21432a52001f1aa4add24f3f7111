@@ -1,0 +1,11 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
+
+public class Boggle {
+	DiceTray tray;
+	
+	public Boggle(){
+		tray = new DiceTray();
+	}
+}

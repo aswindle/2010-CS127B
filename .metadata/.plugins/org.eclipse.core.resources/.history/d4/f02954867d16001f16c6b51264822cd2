@@ -1,0 +1,21 @@
+
+public class Diophantine {
+	
+	public String problem4(){
+		String result = "";
+		int found = 0;
+		while(found<=5){
+			for(int x=0; x<1000; x++){
+				for(int y=0; y<1000; y++)
+					for(int z=0; z<1000; z++){
+						if((z*z-x*x)/2==y){
+							result+=" x: " + x + " y: "+ y + " z: "+ z;
+							found++;
+							break;
+						}
+					}
+			}
+		}
+		return result;
+	}
+}

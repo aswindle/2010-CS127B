@@ -1,0 +1,48 @@
+// A unit test for class DiceTray, which is one important part of the final project
+//
+// 1) YOUR NAME
+// 2) YOUR PARTNER'S NAME
+//
+import static org.junit.Assert.*;
+import org.junit.Test;
+
+public class DiceTrayTest {
+	private char[][] tray = { // Always use upper case letters in the dice tray
+	{ 'A', 'B', 'C', 'D' }, 
+	{ 'E', 'F', 'G', 'H' },
+	{ 'I', 'J', 'K', 'L' },
+	{ 'M', 'N', 'O', 'P' } };
+
+	@Test
+	public void testStringFindWhenThereStartingInUpperLeftCorner() {
+		DiceTray dt = new DiceTray(tray);
+		//assertTrue(dt.stringFound("AbC")); // Must be case insensitive
+		//assertTrue(dt.stringFound("aBf"));
+		//assertTrue(dt.stringFound("abc"));
+		//assertTrue(dt.stringFound("ABCD"));
+		// ...
+		//assertTrue(dt.stringFound("ABFEJINM"));
+		assertFalse(dt.stringFound("AbCdHgFeIjKLpONmi"));
+		assertTrue(dt.stringFound("AbCdHgFeIjKLpONm"));
+		assertTrue(dt.stringFound("ABCDHLPOKJNMIEFG"));
+	}
+
+	/*@Test
+	public void testStringFindWhenNotThere() {
+		DiceTray dt = new DiceTray(tray);
+		assertFalse(dt.stringFound("acb"));
+		assertFalse(dt.stringFound("AiE"));
+		// ...
+	}
+
+	@Test
+	public void testStringFindWhenAttemptIsMadeToUseALetterTwice() {
+		DiceTray dt = new DiceTray(tray);
+		assertFalse(dt.stringFound("ABA"));
+		assertFalse(dt.stringFound("ABB"));
+		assertFalse(dt.stringFound("aEa"));
+		// ...
+	}
+	*/
+	// Many more tests are necessary
+}

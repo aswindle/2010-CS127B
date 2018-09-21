@@ -1,0 +1,18 @@
+
+public class AliquotsFun {
+	
+	public static void main(String[] args){
+		
+		Aliquots test = new Aliquots();
+		System.out.println(test.toString(0));
+		System.out.println(test.isDeficient(0));
+		/*for(int i=1; i<1000; i+=2){
+			if(test.isAbundant(i)){
+				System.out.println(i);
+				System.out.println(test.toString(i)+'\n');
+			}
+		}*/
+		
+	
+	}
+}

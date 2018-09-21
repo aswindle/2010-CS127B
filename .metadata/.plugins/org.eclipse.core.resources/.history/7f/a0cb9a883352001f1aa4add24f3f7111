@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+
+public class BoggleConsole {
+
+	public static void main(String[] args){
+		Boggle game = new Boggle();
+		Scanner input = new Scanner(System.in);
+		String guesses = "qq";
+		System.out.println(game.getDiceTrayAsString());
+		System.out.println("Enter a guess or 'ZZ' to end: ");
+		guesses += input.nextLine().trim().toLowerCase();
+		while(!(guesses.contains(" zz"))){
+			guesses += " " +input.nextLine().trim().toLowerCase();
+		}
+		guesses = guesses.substring(0, guesses.length()-2);
+		Scanner scanGuesses = new Scanner(guesses);
+		while(scanGuesses.hasNext()){
+			game.addGuess(scanGuesses.next().trim());
+		}
+		System.out.println("Correct Words: " + '\n' + game.getWordsFound().toString());
+		System.out.println("Incorrect Words: " + '\n' + game.getWordsIncorrect().toString());
+		System.out.println("Words Not Guessed: " + '\n' + game.getWordsNotGuessed().toString());
+		System.out.println("Score: " + game.getScore());
+	}
+}

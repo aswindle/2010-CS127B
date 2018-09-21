@@ -1,0 +1,56 @@
+public class DiceTray {
+
+	private class BoggleTile {
+		private char element;
+		private boolean used;
+
+		private BoggleTile(char setChar) {
+			used = false;
+			element = setChar;
+		}
+	}
+
+	private BoggleTile[][] tray;
+
+	public DiceTray(char[][] charArray) {
+		for (int row = 0; row < 4; row++) {
+			for (int col = 0; col < 4; col++) {
+				tray[row][col] = new BoggleTile(charArray[row][col]);
+			}
+		}
+	}
+
+	public boolean stringFound(String word) {
+		word = word.toUpperCase();
+		while (word.contains("QU")) {
+			int i = word.indexOf('Q');
+			word = word.substring(0, i) + word.substring(i + 1);
+		}
+		if (!foundHelp(word.charAt(0), '0', 0, 0))
+			return false;
+		else {
+			for (int i = 1; i < word.length(); i++) {
+				if (!foundHelp(word.charAt(i), word.charAt(i - 1), 0, 0))
+					return false;
+			}
+		}
+		return true;
+	}
+
+	private boolean foundHelp(char lookFor, char prev, int startRow,
+			int startCol) {
+		if (prev == '0') {
+			for (int r = 0; r < 4; r++) {
+				for (int c = 0; c < 4; c++) {
+					if (tray[r][c].element == lookFor)
+						return true;
+				}
+			}
+			return false;
+		} else {
+
+			return false;
+		}
+
+	}
+}

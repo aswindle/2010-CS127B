@@ -1,0 +1,28 @@
+
+public class Movie {
+
+		private String title;
+		private int rating;
+		
+		public Movie(String setTitle, int setRating){
+			title = setTitle;
+			if(setRating>=1&&setRating<=5){
+				rating = setRating;
+			}
+			else{
+				rating = 1;
+			}
+		}
+		
+		public String getTitle(){
+			return title;
+		}
+		
+		public String toString(){
+			String stars = "";
+			for(int i=1; i<=rating; i++){
+				stars+="*";
+			}
+			return title + " " + stars;
+		}
+}

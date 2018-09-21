@@ -1,0 +1,18 @@
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class ArrayPriorityListTest {
+	
+	@Test
+	@SuppressWarnings("unchecked")
+	public void testSizeIsEmptyInsertAndGetElement(){
+		ArrayPriorityList<String> test1 = new ArrayPriorityList();
+		assertEquals(0, test1.size());
+		assertTrue(test1.isEmpty());
+		test1.insertElementAt(0, "TEST");
+		assertEquals(1, test1.size());
+		assertFalse(test1.isEmpty());
+		assertEquals("TEST", test1.getElementAt(0));
+	}
+
+}

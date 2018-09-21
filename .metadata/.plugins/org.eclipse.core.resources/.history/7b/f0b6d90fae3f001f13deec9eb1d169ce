@@ -1,0 +1,38 @@
+
+public class EncounterRunner {
+
+	//MonsterSheet(String setName, int setHP, int setAC, int init, int speed, int ref, int fort, int will)
+	//setMelee(int vsAC, int numDie, int type, int constant)
+
+	public static void main(String[]args){
+		
+		MonsterSheet cutter = new MonsterSheet("Cutter", 1, 16, 3, 6, 14, 12, 11);
+		cutter.setMelee(5, 0, 0, 4);
+		
+		MonsterSheet warrior1 = new MonsterSheet("Warrior 1", 29, 17, 5, 6, 15, 13, 12);
+		warrior1.setMelee(6, 1, 6, 2);
+		warrior1.setRanged(6, 1, 6, 2);
+	
+		MonsterSheet warrior2 = new MonsterSheet("Warrior 2", 29, 17, 5, 6, 15, 13, 12);
+		warrior2.setMelee(6, 1, 6, 2);
+		warrior2.setRanged(6, 1, 6, 2);
+		
+		MonsterSheet warrior3 = new MonsterSheet("Warrior 3", 29, 17, 5, 6, 15, 13, 12);
+		warrior3.setMelee(6, 1, 6, 2);
+		warrior3.setRanged(6, 1, 6, 2);
+		
+		MonsterSheet splug = new MonsterSheet("Splug", 29, 17, 5, 6, 15, 13, 12);
+		splug.setMelee(6, 1, 6, 2);
+		splug.setRanged(6, 1, 6, 2);
+		
+		MonsterSheet balgron = new MonsterSheet("Balgron", 46, 17, 10, 6, 17, 16, 15);
+		balgron.setMelee(9, 1, 6, 3);
+		balgron.setRanged(9, 1, 8, 4);
+		
+		cutter.getInit();
+		warrior1.getInit();
+		balgron.getInit();
+		
+		
+	}
+}

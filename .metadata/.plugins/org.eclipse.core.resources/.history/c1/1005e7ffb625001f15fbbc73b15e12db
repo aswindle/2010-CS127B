@@ -1,0 +1,119 @@
+/**
+ * The beginning of a unit test for MineSweeper.
+ * The one test method is used to further specify behavior of a few methods.
+ */
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+public class MineSweeperTest {
+
+	@Test
+	public void testIsMineGetAdjacentTotalMineIsMineAndClick() {
+		boolean[][] b1 = {
+				{ false, false, false, false, false },
+				{ false, false, true,  true,  false },
+				{ false, false, false, true,  false },
+				{ false, false, false, true,  false },
+				{ false, false, false, false, false } };
+
+		// Use non random constructor
+		MineSweeper ms = new MineSweeper(b1);
+		// Mine Count
+		assertEquals(4, ms.getTotalMineCount());
+		// Adjacent mines
+		assertTrue(ms.isMine(1, 2));
+		assertTrue(ms.isMine(1, 3));
+		assertTrue(ms.isMine(2, 3));
+		assertTrue(ms.isMine(3, 3));
+		assertEquals(0, ms.getAdjacentMines(0, 0));
+		assertEquals(1, ms.getAdjacentMines(0, 1));
+		assertEquals(2, ms.getAdjacentMines(0, 2));
+		assertEquals(2, ms.getAdjacentMines(0, 3));
+		assertEquals(1, ms.getAdjacentMines(0, 4));
+		assertEquals(0, ms.getAdjacentMines(1, 0));
+		assertEquals(1, ms.getAdjacentMines(1, 1));
+		assertEquals(2, ms.getAdjacentMines(1, 4));
+		assertEquals(0, ms.getAdjacentMines(2, 0));
+		assertEquals(1, ms.getAdjacentMines(2, 1));
+		assertEquals(4, ms.getAdjacentMines(2, 2));
+		assertEquals(3, ms.getAdjacentMines(2, 4));
+		assertEquals(0, ms.getAdjacentMines(3, 0));
+		assertEquals(0, ms.getAdjacentMines(3, 1));
+		assertEquals(2, ms.getAdjacentMines(3, 2));
+		assertEquals(2, ms.getAdjacentMines(3, 4));
+		assertEquals(0, ms.getAdjacentMines(4, 0));
+		assertEquals(0, ms.getAdjacentMines(4, 1));
+		assertEquals(1, ms.getAdjacentMines(4, 2));
+		assertEquals(1, ms.getAdjacentMines(4, 3));
+		assertEquals(1, ms.getAdjacentMines(4, 4));
+		// Click and see a few have cleared
+		assertFalse(ms.isVisible(0, 0));
+		assertFalse(ms.isVisible(0, 1));
+		assertFalse(ms.isVisible(1, 0));
+		assertFalse(ms.isVisible(1, 1));
+		ms.click(0, 0);
+		assertTrue(ms.isVisible(0, 0));
+		assertTrue(ms.isVisible(0, 1));
+		assertTrue(ms.isVisible(1, 0));
+		assertTrue(ms.isVisible(1, 1));
+		assertTrue(ms.isVisible(2, 0));
+		assertTrue(ms.isVisible(2, 1));
+		assertTrue(ms.isVisible(2, 2));
+		assertTrue(ms.isVisible(3, 0));
+		assertTrue(ms.isVisible(3, 1));
+		assertTrue(ms.isVisible(3, 2));
+		assertTrue(ms.isVisible(4, 0));
+		assertTrue(ms.isVisible(4, 1));
+		assertTrue(ms.isVisible(4, 2));
+		
+		boolean[][] b2 = {
+				{true, false, false, false},
+				{false, false, false, false},
+				{false, false, false, false} };
+		
+		MineSweeper tester = new MineSweeper(b2);
+		tester.click(1, 2);
+		for(int r = 0; r<4; r++){
+			for(int c = 0; c<3; c++){
+				if(r!=0&&c!=0){
+					assertTrue(tester.isVisible(r, c));
+				}
+			}
+		}
+	}
+	
+	@Test
+	public void testWinLoseFlagged(){
+		boolean[][] b2 = {
+				{false, false},
+				{false, false} };
+		MineSweeper test = new MineSweeper(b2);
+		assertFalse(test.won());
+		test.click(0, 0);
+		test.toString();
+		assertTrue(test.won());
+		test.click(0, 0);
+		
+		boolean[][] b3 = {
+				{false, false},
+				{false, true} };
+		
+		MineSweeper test2 = new MineSweeper(b3);
+		test2.click(0, 0);
+		test2.toggleFlagged(1, 1);
+		assertTrue(test2.isFlagged(1, 1));
+		test2.toString();
+		test2.click(1, 1);
+		assertTrue(test2.lost());
+		test2.toggleFlagged(1, 1);
+		test.click(1, 1);
+		assertTrue(test2.lost());
+		test2.toString();
+		
+		MineSweeper test3 = new MineSweeper(100, 100, 100);
+		MineSweeper test4 = new MineSweeper(100, 100, 0);
+	}
+}

@@ -1,0 +1,18 @@
+
+public class Attack {
+	private int numDie;
+	private int dieType;
+	private int constant;
+	private int ACBonus;
+	
+	public Attack(int vsAC, int num, int type, int c){
+		numDie = num;
+		dieType = type;
+		constant = c;
+		ACBonus = vsAC;
+	}
+	
+	public String swing(){
+		
+	}
+}

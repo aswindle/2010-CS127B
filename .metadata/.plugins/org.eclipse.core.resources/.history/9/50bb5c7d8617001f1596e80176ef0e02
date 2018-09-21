@@ -1,0 +1,97 @@
+/*Alex Swindle
+ * C SC 127B
+ * Section Leader: Andrew Emmott
+ */
+
+
+public class LinkedPriorityList<E> implements PriorityList<E>{
+
+	// This private inner class saves lots of typing and is hidden from outsiders
+	private class Node {
+	
+		// These instance variables can be accessed from the enclosing class
+		private E data;
+		private Node next;
+	
+		public Node(E element) {
+			data = element;
+			next = null;
+		}
+	
+		public Node(E element, Node link) {
+			data = element;
+			next = link;
+		}
+	}
+	
+	// These instance variables belong to the enclosing class
+	private Node first;
+	private int size;
+	
+	// Create an empty list with zero elements
+	public LinkedPriorityList() {
+		first = null;
+		size = 0;
+	}
+	
+	@Override
+	public E getElementAt(int index) throws IllegalArgumentException {
+		
+		return null;
+	}
+
+	@Override
+	public void insertElementAt(int index, E el)
+			throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void lowerPriorityOf(int index) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void moveToLast(int index) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void moveToTop(int index) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void raisePriorityOf(int index) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeElementAt(int index) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int size() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Object[] toArray() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,11 @@
+
+public class AliquotsFun {
+	
+	public static void main(String[] args){
+		
+		Aliquots test = new Aliquots();
+		System.out.println(test.toString(16));
+		
+	
+	}
+}

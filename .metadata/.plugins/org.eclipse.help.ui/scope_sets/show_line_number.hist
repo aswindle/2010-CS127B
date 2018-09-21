@@ -1,0 +1,4 @@
+#Mon Apr 26 13:51:19 MST 2010
+__DEFAULT__=false
+org.eclipse.help.ui.localSearch.master=true
+expression=show line number

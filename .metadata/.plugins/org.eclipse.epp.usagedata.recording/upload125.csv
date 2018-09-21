@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+java.vm.specification.name,sysinfo,,,"Java Virtual Machine Specification",1264375693864
+java.vm.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1264375693864
+java.vm.specification.version,sysinfo,,,"1.0",1264375693864
+java.vm.vendor,sysinfo,,,"Sun Microsystems Inc.",1264375693864
+java.vm.version,sysinfo,,,"16.0-b06",1264375693864
+activated,view,org.eclipse.ui.console,3.4.0.v20090513,"org.eclipse.ui.console.ConsoleView",1264375699556
+activated,view,org.eclipse.jdt.ui,3.5.1.r351_v20090821-0800,"org.eclipse.jdt.ui.PackageExplorer",1264375702342
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264375715209
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264375723847
+executed,command,org.eclipse.ui,3.5.1.M20090902-1000,"org.eclipse.ui.file.import",1264375723861
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264375726297
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264375736197
+opened,editor,org.eclipse.jdt.ui,3.5.1.r351_v20090821-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1264375736515
+activated,editor,org.eclipse.jdt.ui,3.5.1.r351_v20090821-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1264375736653
+executed,command,org.eclipse.ui.ide,3.5.1.M20090826-0800,"org.eclipse.ui.edit.text.openLocalFile",1264375736656
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264375744083
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264375748159
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264375748306
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264375750776
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264375750844
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264375753445
+executed,command,org.eclipse.ui,3.5.1.M20090902-1000,"org.eclipse.ui.file.saveAs",1264375753457
+started,bundle,org.eclipse.debug.ui,3.5.1.v20090811_r351,"org.eclipse.debug.ui",1264375771791
+started,bundle,org.eclipse.ant.ui,3.4.1.v20090901_r351,"org.eclipse.ant.ui",1264375771998
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264375772207

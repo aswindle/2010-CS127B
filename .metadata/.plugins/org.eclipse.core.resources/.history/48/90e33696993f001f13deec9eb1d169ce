@@ -1,0 +1,27 @@
+
+
+public class Attack {
+	private int numDie;
+	private int dieType;
+	private int constant;
+	private int ACBonus;
+	
+	public Attack(int vsAC, int num, int type, int c){
+		numDie = num;
+		dieType = type;
+		constant = c;
+		ACBonus = vsAC;
+	}
+	
+	public String swing(){
+		int ACcheck = (int)(20*Math.random()+1);
+		int damage=0;
+		for(int i=1; i<=numDie; i++){
+			damage += (int)(dieType*Math.random()+1.0);
+		}
+		damage+=constant;
+		if(ACcheck==1) return "has Critically Failed";
+		else if(ACcheck==20) return " has a Crit; Damage: " + numDie*dieType + constant;
+		else return "'s attack: AC Check: " + (ACcheck+ACBonus) + "; Damage: " + damage;
+	}
+}

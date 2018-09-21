@@ -1,0 +1,13 @@
+
+public class AliquotsFun {
+	
+	public static void main(String[] args){
+		
+		Aliquots test = new Aliquots();
+		System.out.println(test.toString(6));
+		System.out.println(test.toString(12));
+		System.out.println(test.toString(9));
+		boolean testBoolean1 = test.isPerfect(6);
+		System.out.println(testBoolean1);
+	}
+}

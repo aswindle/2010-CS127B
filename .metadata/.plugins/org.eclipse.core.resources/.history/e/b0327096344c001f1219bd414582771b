@@ -1,0 +1,182 @@
+/**
+ * Implement a Map ADT using a Binary search tree that maintains all element in
+ * order based on the key. Methods include
+ *
+ * 1) V get(K)
+ *
+ * 2) void put(K, V)
+ *
+ * 3) boolean remove(K)
+ *
+ * 4) int size()
+ *
+ * @author Rick Mercer
+ *
+ * @param <K> The key (must implement Comparable)
+ * @param <V> The value mapped the the key K
+ */
+public class OrderedMap<K extends Comparable<K>, V> {
+
+  private class MapNode {
+    private K key;
+
+    private V value;
+
+    private MapNode left;
+
+    private MapNode right;
+
+    public MapNode(K theKey, V theValue) {
+      key = theKey;
+      value = theValue;
+      left = null;
+      right = null;
+    }
+  } // end class MapNode
+
+  // The single instance variable
+  private MapNode root;
+
+  /**
+   * Create an empty tree
+   */
+  public OrderedMap() {
+    root = null;
+  }
+
+  /**
+   * Let newValue will be mapped to key and keep this collection as a
+   * BinarySearchTree (if the key does not already exist).
+   * This tree will not insert newElement if the key equals an
+   * existing element.  In this case, return false
+   *
+   * @param <K> The key (must implement Comparable)
+   * @param <V> The value mapped the the key K
+   */
+  public boolean put(K key, V newValue) {
+    if (root == null) {
+      root = new MapNode(key, newValue);
+      return true;
+    }
+    else { // find the proper leaf to attach to
+      MapNode curr = root;
+      MapNode prev = root;
+
+      while (curr != null) {
+        prev = curr;
+        if (key.compareTo(curr.key) < 0)
+          curr = curr.left;
+        else if (key.compareTo(curr.key) > 0)
+          curr = curr.right;
+        else { // keys must be equal
+          return false;
+        }
+      }
+
+      // Correct leaf has now been found, now determine whether
+      // to link the new node to prev.left or prev.right
+      if (key.compareTo(prev.key) < 0)
+        prev.left = new MapNode(key, newValue);
+      else
+        prev.right = new MapNode(key, newValue);
+
+      return true;
+    }
+  }
+
+  /**
+   * Return the value mapped to key, or null if key is not found
+   * @param <K> The key mapped to a value
+   */
+  public V get(K key) {
+    MapNode t = root;
+    while (t != null) {
+      if (key.equals(t.key))
+        return t.value;
+      else if (key.compareTo(t.key) < 0)
+        t = t.left;
+      else
+        t = t.right;
+    }
+    // If the loop finishes, either the tree was empty or key was not found
+    return null;
+  }
+
+  /**
+   * Return the size of this collection.
+   *
+   * This algorithm is O(n) since it traverses the BST each time.
+   * This approach was used to help convince us that remove is actually
+   * changing the structure of the tree. This O(n) algorithm also means
+   * that you don't have to worry about forgetting size-- in remove.
+   */
+  public int size() {
+    return size(root);
+  }
+
+  private int size(MapNode t) {
+    if (t == null)
+      return 0;
+    return 1 + size(t.left) + size(t.right);
+  }
+
+  /**
+   * Remove the mapping when key is found. Return false the key is not found.
+   *
+   * Use the algorithm discussed in lecture.
+   *
+   * @param key The key of the mapping to be removed.
+   * @return true if the key existed and the mapping was removed from this tree.
+   */
+  public boolean remove(K key) {
+	  if(root==null) return false;
+	  if (root.key.compareTo(key)==0&&root.left==null){ 
+		  root = root.right;
+		  return true;
+	  }
+	  else if(key.compareTo(root.key)<0) return remHelp(key, root, root.left);
+	  else return remHelp(key, root, root.right);
+    
+    
+  }
+
+private boolean remHelp(K key, MapNode prev, MapNode curr) {
+	if(curr==null) return false;
+	else{
+		int comp = key.compareTo(curr.key);
+		if(comp<0)
+			return remHelp(key, curr, curr.left);
+		else if (comp>0) return remHelp(key, curr, curr.right);
+		else{
+			if(curr.left==null){
+				if(prev.left.key.compareTo(curr.key)==0){
+					prev.left = curr.right;
+					return true;
+				}
+				else {
+					prev.right = curr.right;
+					return true;
+				}
+			}
+			else{
+				MapNode max = maxKey(curr.left);
+				curr.value = max.value;
+				curr.key = max.key;
+				remHelp(max.key, curr.left, curr.left.right);
+				return true;
+			}
+		}
+	}
+}
+
+private MapNode maxKey(MapNode start) {
+	MapNode best = start;
+	MapNode curr = start;
+	while(curr!=null){
+		best = curr;
+		curr = curr.right;
+	}
+	return best;
+}
+  
+}

@@ -1,0 +1,11 @@
+
+public class MainTest {
+	boolean[][] b1 = {
+			{ false, false, false, false, false },
+			{ false, false, true,  true,  false },
+			{ false, false, false, true,  false },
+			{ false, false, false, true,  false },
+			{ false, false, false, false, false } };
+	MineSweeper test = new MineSweeper(b1);
+	System.out.println(test.toString());
+}

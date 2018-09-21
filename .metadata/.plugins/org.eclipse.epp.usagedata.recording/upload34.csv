@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+java.vm.specification.version,sysinfo,,,"1.0",1264019020351
+java.vm.vendor,sysinfo,,,"Sun Microsystems Inc.",1264019020351
+java.vm.version,sysinfo,,,"16.0-b06",1264019020351
+opened,view,org.eclipse.jdt.ui,3.5.1.r351_v20090821-0800,"org.eclipse.jdt.ui.PackageExplorer",1264019035404
+activated,view,org.eclipse.jdt.ui,3.5.1.r351_v20090821-0800,"org.eclipse.jdt.ui.PackageExplorer",1264019035449
+executed,command,org.eclipse.ui,3.5.1.M20090902-1000,"org.eclipse.ui.views.showView",1264019035449
+opened,view,org.eclipse.jdt.ui,3.5.1.r351_v20090821-0800,"org.eclipse.jdt.ui.TypeHierarchy",1264019048001
+activated,view,org.eclipse.jdt.ui,3.5.1.r351_v20090821-0800,"org.eclipse.jdt.ui.TypeHierarchy",1264019048021
+executed,command,org.eclipse.ui,3.5.1.M20090902-1000,"org.eclipse.ui.views.showView",1264019048021
+activated,view,org.eclipse.jdt.ui,3.5.1.r351_v20090821-0800,"org.eclipse.jdt.ui.PackageExplorer",1264019054769
+executed,command,org.eclipse.ui,3.5.1.M20090902-1000,"org.eclipse.ui.views.showView",1264019054769
+started,bundle,org.eclipse.debug.ui,3.5.1.v20090811_r351,"org.eclipse.debug.ui",1264019066437
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264019069946
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264019071984
+executed,command,org.eclipse.debug.ui,3.5.1.v20090811_r351,"org.eclipse.debug.ui.commands.RunLast",1264019071989
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264019095461
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264019096916
+executed,command,org.eclipse.debug.ui,3.5.1.v20090811_r351,"org.eclipse.debug.ui.commands.RunLast",1264019096923
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264019108197
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264019121852
+started,bundle,org.eclipse.equinox.p2.ui,1.0.101.R35x_v20090819,"org.eclipse.equinox.p2.ui",1264019125272
+started,bundle,org.eclipse.equinox.p2.ui.sdk,1.0.100.v20090520-1905,"org.eclipse.equinox.p2.ui.sdk",1264019125282
+started,bundle,org.eclipse.ecf.identity,3.0.0.v20090831-1906,"org.eclipse.ecf.identity",1264019125362
+started,bundle,org.eclipse.ecf,3.0.0.v20090831-1906,"org.eclipse.ecf",1264019125382
+started,bundle,org.eclipse.ecf.provider.filetransfer.httpclient,3.0.1.v20090831-1906,"org.eclipse.ecf.provider.filetransfer.httpclient",1264019125402

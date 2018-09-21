@@ -1,0 +1,153 @@
+/*Alex Swindle
+ * C SC 127B Project #2: ArrayPriorityList
+ * Creates a generic list that can have elements moved up and down
+ * in priority
+ */
+
+public class ArrayPriorityList<E> {
+	
+	//instance variables
+	private Object[] data;
+	private int size;
+	private int arraySize;
+	
+	//default constructor
+	public ArrayPriorityList() {
+		data = new Object[20];
+		size = 0;
+		arraySize = 20;
+	}//end constructor
+	
+	//simple getter for size of array
+	public int size(){
+		return size;
+	}//end size getter
+	
+	//returns true if size is 0, false otherwise
+	public boolean isEmpty() {
+		if (size==0){
+			return true;
+		}//end if
+		return false;
+	}//end isEmpty()
+	
+	/*Inserts object at specified index
+	 * If that increases size beyond the current array size, a new array
+	 * that is one bigger is created and the old one is transferred to it
+	 */
+	public void insertElementAt(int index, E el) {
+		int tempSize = arraySize;
+		if(size==arraySize-1){
+			tempSize = arraySize+1;
+			arraySize++;
+		}
+		Object[] temp = new Object[tempSize];
+		for(int i=0; i<index; i++){
+			temp[i]=data[i];
+		}
+		temp[index]=el;
+		for(int i=index+1; i<arraySize; i++){
+			temp[i]=data[i-1];
+		}
+		data = temp;
+		size++;
+	}//end insertElementAt
+	
+	//Simple getter for element at certain index, cast as the parameter type
+	@SuppressWarnings("unchecked")
+	public E getElementAt(int index){
+		return (E)data[index];
+	}//end getElementAt
+	
+	/*Removes element at specific index by creating temp array
+	 * and transferring the data, except the one to be removed, into it
+	 * and decreasing size by 1
+	 */
+	public void removeElementAt(int index){
+		Object[] temp = new Object[arraySize];
+		if(index!=0){
+			for(int i=0; i<index; i++){
+				temp[i]=data[i];
+			}
+			for(int j=index; j<arraySize-1; j++){
+				temp[j]=data[j+1];
+			}
+		}
+		else {
+			for(int i=0; i<arraySize-1; i++){
+				temp[i]=data[i+1];
+			}
+		}
+		data = temp;
+		size--;
+	}//end removeElementAt
+	
+	//Swaps element with the one below it; ignores last element
+	public void lowerPriorityOf(int index){
+		if(index!=size-1){
+			Object temp = data[index];
+			data[index]=data[index+1];
+			data[index+1]=temp;
+		}
+	}//end lowerPriorityOf
+	
+	//Swaps element with the one above it; ignores first element
+	public void raisePriorityOf(int index){
+		if(index!=0){
+			Object temp = data[index];
+			data[index]=data[index-1];
+			data[index-1]=temp;
+		}
+	}//end raisePriorityOf
+	
+	/*Returns new object array that's either empty or a copy
+	 * of the used elements of the data array
+	 */
+	public Object[] toArray(){
+		if(isEmpty()==true){
+			Object[] empty = new Object[0];
+			return empty;
+		}
+		else{
+			Object[] temp = new Object[size+1];
+			for(int i=0; i<size; i++){
+				temp[i]=data[i];
+			}
+			return temp;
+		}
+	}//end toArray
+	
+	//Moves element to last position; ignores last element
+	public void moveToLast(int index){
+		if(index!=size-1){
+			Object[] temp = new Object[arraySize];
+			Object firstEl = data[index];
+			for(int i=0; i<index; i++){
+				temp[i]=data[i];
+			}
+			for(int i=index; i<size-1; i++){
+				temp[i]=data[i+1];
+			}
+			temp[size-1]=firstEl;
+			data = temp;
+		}
+	}//end moveToLast
+	
+	//Moves element to first position; ignores first element
+	public void moveToTop(int index){
+		if(index!=0){
+			Object[] temp = new Object[arraySize];
+			Object lastEl = data[index];
+			temp[0]=lastEl;
+			for(int i=1; i<=index; i++){
+				temp[i]=data[i-1];
+			}
+			for(int i=index+1; i<arraySize-1; i++){
+				temp[i]=data[i];
+			}
+			data = temp;
+		}
+	}//end moveToTop
+	
+}//end class
+

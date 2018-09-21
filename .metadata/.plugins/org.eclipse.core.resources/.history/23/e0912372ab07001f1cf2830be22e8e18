@@ -1,0 +1,20 @@
+
+public class GameOfLifePlayTime {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		GameOfLife tester3 = new GameOfLife(4, 4);
+		tester3.growCellAt(2, 1);
+		tester3.growCellAt(1,2);
+		tester3.growCellAt(3,2);
+		System.out.println(tester3.toString());
+		System.out.println(tester3.neighborCount(2, 1));
+		tester3.update();
+		System.out.println(tester3.toString());
+		
+
+	}
+
+}

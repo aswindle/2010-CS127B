@@ -1,0 +1,59 @@
+public class Diophantine {
+
+	public String problem4() {
+		String toString = "";
+		int ways;
+		for (int c = 1; c < 1000; c++) {
+			ways = 0;
+			toString = "";
+			for (int x = 1; x < 100; x++) {
+				for (int y = x; y < 100; y++) {
+					for (int z = y; z < 100; z++) {
+						if (x * x + y * y + z * z == c) {
+							ways++;
+							toString += x + " " + y + " " + z + '\n';
+							if (ways == 4) {
+								return toString + c;
+							}
+						}
+					}
+				}
+			}
+		}
+		return "blah";
+	}
+
+	public int gcd(int x, int y, int z) {
+		int min = Math.min(x, y);
+		min = Math.min(min, z);
+		int max = Math.max(x, y);
+		max = Math.max(max, z);
+		int gcd = 1;
+		for (int test = gcd; test <= min; test++) {
+			if (x % test == 0 && y % test == 0 && z % test == 0) {
+				gcd = test;
+			}
+		}
+		return gcd;
+	}
+
+	public String problem10a() {
+		String toString = "";
+		int solutions = 0;
+		while (solutions < 5) {
+			for (int x = 1; x < 100; x++) {
+				for (int y = 1; y < 100; y++) {
+					for (int z = 1; z < 100; z++) {
+						if (gcd(x, y, z) == 1) {
+							if (x * x + 2 * y * y == z * z) {
+								solutions++;
+								toString += x + " " + y + " " + z + '\n';
+							}
+						}
+					}
+				}
+			}
+		}
+		return toString;
+	}
+}

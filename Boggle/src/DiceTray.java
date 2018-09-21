@@ -1,0 +1,403 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
+/*
+ * Alex Swindle
+ * Kevin Butler
+ * Boggle Iteration 1
+ */
+
+public class DiceTray {
+
+	//private class that stores the char and if the tile has been used in the current word
+	private class BoggleTile {
+		private char element;
+		private boolean used;
+
+		private BoggleTile(char setChar) {
+			used = false;
+			element = setChar;
+		}
+	}
+
+	//Instance vars; includes 16 dice (each a char array), an array of those arrays, and a temporary char[][]
+	private ArrayList<ArrayList<Character>> dice = new ArrayList<ArrayList<Character>>(16);
+	private ArrayList<Character> die1 = new ArrayList<Character>(6);
+	private ArrayList<Character> die2 = new ArrayList<Character>(6);
+	private ArrayList<Character> die3 = new ArrayList<Character>(6);
+	private ArrayList<Character> die4 = new ArrayList<Character>(6);
+	private ArrayList<Character> die5 = new ArrayList<Character>(6);
+	private ArrayList<Character> die6 = new ArrayList<Character>(6);
+	private ArrayList<Character> die7 = new ArrayList<Character>(6);
+	private ArrayList<Character> die8 = new ArrayList<Character>(6);
+	private ArrayList<Character> die9 = new ArrayList<Character>(6);
+	private ArrayList<Character> die10 = new ArrayList<Character>(6);
+	private ArrayList<Character> die11 = new ArrayList<Character>(6);
+	private ArrayList<Character> die12 = new ArrayList<Character>(6);
+	private ArrayList<Character> die13 = new ArrayList<Character>(6);
+	private ArrayList<Character> die14 = new ArrayList<Character>(6);
+	private ArrayList<Character> die15 = new ArrayList<Character>(6);
+	private ArrayList<Character> die16 = new ArrayList<Character>(6);
+	private char[][] charTray = new char[4][4];
+
+	//builds each die; would have been easier to use a char array, which we
+	//realized after having written the code
+	public void buildDice() {
+		
+		die1.add('L');
+		die1.add('R');
+		die1.add('Y');
+		die1.add('T');
+		die1.add('T');
+		die1.add('E');
+
+		die2.add('A');
+		die2.add('N');
+		die2.add('A');
+		die2.add('E');
+		die2.add('E');
+		die2.add('G');
+
+		die3.add('A');
+		die3.add('F');
+		die3.add('P');
+		die3.add('K');
+		die3.add('F');
+		die3.add('S');
+
+		die4.add('Y');
+		die4.add('L');
+		die4.add('D');
+		die4.add('E');
+		die4.add('V');
+		die4.add('R');
+
+		die5.add('V');
+		die5.add('T');
+		die5.add('H');
+		die5.add('R');
+		die5.add('W');
+		die5.add('E');
+
+		die6.add('I');
+		die6.add('D');
+		die6.add('S');
+		die6.add('Y');
+		die6.add('T');
+		die6.add('T');
+
+		die7.add('X');
+		die7.add('L');
+		die7.add('D');
+		die7.add('E');
+		die7.add('R');
+		die7.add('I');
+
+		die8.add('Z');
+		die8.add('N');
+		die8.add('R');
+		die8.add('N');
+		die8.add('H');
+		die8.add('L');
+
+		die9.add('E');
+		die9.add('G');
+		die9.add('H');
+		die9.add('W');
+		die9.add('N');
+		die9.add('E');
+
+		die10.add('O');
+		die10.add('A');
+		die10.add('T');
+		die10.add('T');
+		die10.add('O');
+		die10.add('W');
+
+		die11.add('H');
+		die11.add('C');
+		die11.add('P');
+		die11.add('O');
+		die11.add('A');
+		die11.add('S');
+
+		die12.add('N');
+		die12.add('M');
+		die12.add('I');
+		die12.add('H');
+		die12.add('U');
+		die12.add('Q');
+
+		die13.add('S');
+		die13.add('E');
+		die13.add('O');
+		die13.add('T');
+		die13.add('I');
+		die13.add('S');
+
+		die14.add('M');
+		die14.add('T');
+		die14.add('O');
+		die14.add('I');
+		die14.add('C');
+		die14.add('U');
+
+		die15.add('E');
+		die15.add('N');
+		die15.add('S');
+		die15.add('I');
+		die15.add('E');
+		die15.add('U');
+
+		die16.add('O');
+		die16.add('B');
+		die16.add('B');
+		die16.add('A');
+		die16.add('O');
+		die16.add('J');
+
+		dice.add(die1);
+		dice.add(die2);
+		dice.add(die3);
+		dice.add(die4);
+		dice.add(die5);
+		dice.add(die6);
+		dice.add(die7);
+		dice.add(die8);
+		dice.add(die9);
+		dice.add(die10);
+		dice.add(die11);
+		dice.add(die12);
+		dice.add(die13);
+		dice.add(die14);
+		dice.add(die15);
+		dice.add(die16);
+	}
+
+	//instance vars for testing words
+	private String curWord;
+	private BoggleTile[][] tray;
+
+	//constructor that converts a char array to a BoggleTile array
+	public DiceTray(char[][] charArray) {
+		tray = new BoggleTile[4][4];
+		for (int row = 0; row < 4; row++) {
+			for (int col = 0; col < 4; col++) {
+				tray[row][col] = new BoggleTile(charArray[row][col]);
+			}
+		}
+	}
+
+	//Array of dice is shuffled to get random order of dice for board
+	//Then each die is shuffled to get a random letter from each die
+	public DiceTray() {
+		buildDice();
+		Collections.shuffle(dice);
+		Collections.shuffle(dice.get(0));
+		Collections.shuffle(dice.get(1));
+		Collections.shuffle(dice.get(2));
+		Collections.shuffle(dice.get(3));
+		Collections.shuffle(dice.get(4));
+		Collections.shuffle(dice.get(5));
+		Collections.shuffle(dice.get(6));
+		Collections.shuffle(dice.get(7));
+		Collections.shuffle(dice.get(8));
+		Collections.shuffle(dice.get(9));
+		Collections.shuffle(dice.get(10));
+		Collections.shuffle(dice.get(11));
+		Collections.shuffle(dice.get(12));
+		Collections.shuffle(dice.get(13));
+		Collections.shuffle(dice.get(14));
+		Collections.shuffle(dice.get(15));
+
+		//Char array is built using the randomized dice in order
+		charTray[0][0] = dice.get(0).get(0);
+		charTray[0][1] = dice.get(1).get(0);
+		charTray[0][2] = dice.get(2).get(0);
+		charTray[0][3] = dice.get(3).get(0);
+		charTray[1][0] = dice.get(4).get(0);
+		charTray[1][1] = dice.get(5).get(0);
+		charTray[1][2] = dice.get(6).get(0);
+		charTray[1][3] = dice.get(7).get(0);
+		charTray[2][0] = dice.get(8).get(0);
+		charTray[2][1] = dice.get(9).get(0);
+		charTray[2][2] = dice.get(10).get(0);
+		charTray[2][3] = dice.get(11).get(0);
+		charTray[3][0] = dice.get(12).get(0);
+		charTray[3][1] = dice.get(13).get(0);
+		charTray[3][2] = dice.get(14).get(0);
+		charTray[3][3] = dice.get(15).get(0);
+		DiceTray temp = new DiceTray(charTray);
+		this.tray = temp.tray;
+		
+
+	}
+
+	//tests whether or not a certain string is in the tray
+	public boolean stringFound(String word) {
+		//Sets each tile to unused each time a new word is tried
+		for (int row = 0; row < 4; row++) {
+			for (int col = 0; col < 4; col++) {
+				tray[row][col].used = false;
+			}
+		}
+		// changes word to all uppercase, removes any QUs
+		word = word.toUpperCase();
+		while (word.contains("QU")) {
+			int i = word.indexOf("QU");
+			word = word.substring(0, i + 1) + word.substring(i + 2);
+		}
+		//sets instance var to the guess
+		curWord = word;
+
+		//tries all 16 starting positions for the word
+		for (int r = 0; r < 4; r++) {
+			for (int c = 0; c < 4; c++) {
+				tray[r][c].used = true;
+				if (foundHelp(0, r, c))
+					return true;
+				tray[r][c].used = false;
+			}
+		}
+		return false;
+
+	}
+
+	//private helper method that looks for one of the chars in the word, starting at a certain position
+	private boolean foundHelp(int wordPosition, int startRow, int startCol) {
+		char lookFor = curWord.charAt(wordPosition);
+		
+		//If the current position contains the right character, a bunch of stuff happens
+		if (lookFor == tray[startRow][startCol].element) {
+			
+			//If the next one is the end of the word, then we're done
+			if (wordPosition + 1 == curWord.length())
+				return true;
+			
+			//Tries all 8 tiles around the starting point to see if they contain the next needed char
+			//If the direction is possible and the tile hasn't been used
+			//	The tile is set to used
+			//	If the recursive call is true, then it returns true
+			//	Otherwise it changes the corner back to unused so other directions can use it
+			BoggleTile nextTile = getTile(1, startRow, startCol);
+			if (nextTile != null && nextTile.used == false) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow - 1, startCol - 1))
+					return true;
+				nextTile.used = false;
+			}
+			nextTile = getTile(2, startRow, startCol);
+			if (nextTile != null && nextTile.used != true) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow - 1, startCol))
+					return true;
+				nextTile.used = false;
+			}
+			nextTile = getTile(3, startRow, startCol);
+			if (nextTile != null && nextTile.used != true) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow - 1, startCol + 1))
+					return true;
+				nextTile.used = false;
+			}
+			nextTile = getTile(4, startRow, startCol);
+			if (nextTile != null && nextTile.used != true) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow, startCol + 1))
+					return true;
+				nextTile.used = false;
+			}
+			nextTile = getTile(5, startRow, startCol);
+			if (nextTile != null && nextTile.used != true) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow + 1, startCol + 1))
+					return true;
+				nextTile.used = false;
+			}
+			nextTile = getTile(6, startRow, startCol);
+			if (nextTile != null && nextTile.used != true) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow + 1, startCol))
+					return true;
+				nextTile.used = false;
+			}
+			nextTile = getTile(7, startRow, startCol);
+			if (nextTile != null && nextTile.used != true) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow + 1, startCol - 1))
+					return true;
+				nextTile.used = false;
+			}
+			nextTile = getTile(8, startRow, startCol);
+			if (nextTile != null && nextTile.used != true) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow, startCol - 1))
+					return true;
+				nextTile.used = false;
+			}
+			return false;
+
+		//Otherwise the current position has the wrong character, so it must be wrong
+		} else {
+			return false;
+		}
+	}
+
+	/*
+	 * Positions for looking around: 
+	 * 1 2 3 
+	 * 8 x 4 
+	 * 7 6 5
+	 * 
+	 * getTile returns the tile at a given position, or null if it's on an edge or corner
+	 */
+	private BoggleTile getTile(int i, int row, int col) {
+		if (i == 1) {
+			if (row - 1 >= 0 && col - 1 >= 0) {
+				return tray[row - 1][col - 1];
+			}
+		} else if (i == 2) {
+			if (row - 1 >= 0) {
+				return tray[row - 1][col];
+			}
+		} else if (i == 3) {
+			if (row - 1 >= 0 && col + 1 < 4) {
+				return tray[row - 1][col + 1];
+			}
+		} else if (i == 4) {
+			if (col + 1 < 4) {
+				return tray[row][col + 1];
+			}
+		} else if (i == 5) {
+			if (row + 1 < 4 && col + 1 < 4) {
+				return tray[row + 1][col + 1];
+			}
+		} else if (i == 6) {
+			if (row + 1 < 4) {
+				return tray[row + 1][col];
+			}
+		} else if (i == 7) {
+			if (row + 1 < 4 && col - 1 >= 0) {
+				return tray[row + 1][col - 1];
+			}
+		} else if (i == 8) {
+			if (col - 1 >= 0) {
+				return tray[row][col - 1];
+			}
+		}
+		return null;
+	}
+
+	//returns string version of the array, with special case for Q to print out Qu
+	public String toString(){
+		String toString="";
+		for(int r=0; r<4; r++){
+			for(int c=0; c<4; c++){
+				if(tray[r][c].element!='Q') toString+=tray[r][c].element + "  ";
+				else toString += tray[r][c].element + "u ";
+			}
+			toString+='\n';
+		}
+		return toString;
+	}
+}

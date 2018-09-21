@@ -1,0 +1,245 @@
+/**
+* A model for John Conway's Game of Life.
+* @author Design (methods, parameters, return types) by Rick Mercer
+*/
+
+public class GameOfLife {
+
+	private int rows;
+	private int cols;
+	private char[][] array;
+	private static int generation=1;
+	
+	public GameOfLife(int testRows, int testCols) {
+		if(testRows>0&&testCols>0){
+			rows = testRows;
+			cols = testCols;
+			array = new char[rows][cols];
+			for (int i=0; i<array.length; i++){
+				for (int j=0; j<array[i].length; j++){
+					array[i][j]= '.';
+				}
+			}
+		}
+	}
+
+	public int numberOfRows() {
+		return rows;
+	}
+
+	public int numberOfColumns() {
+		return cols;
+	}
+
+	public void growCellAt(int setRow, int setCol) {
+		if(setRow>=0&&setRow<rows&&setCol>=0&&setCol<cols){
+			array[setRow][setCol] = 'O';
+		}
+	}
+
+	
+	public boolean cellAt(int testRow, int testCol) {
+		if(testRow>=0&&testRow<rows&&testCol>=0&&testCol<cols){
+			if(array[testRow][testCol]=='O'){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public String toString() {
+		String toString = "Generation: " + generation + '\n';
+		for(int i=0; i<rows; i++){
+			for(int j=0; j<cols; j++){
+				toString+=array[i][j];
+			}
+			toString+= '\n';
+		}//end rows
+		return toString;
+	}
+
+	public int neighborCount(int testR, int testC) {
+		int neighbors = 0;
+		if(testR>=0&&testR<rows&&testC>=0&&testC<cols){
+	
+			//top
+			if(testR>=1){
+				if(array[testR-1][testC]=='O'){
+					neighbors++;
+				}
+			}
+			else{
+				if(array[array.length-1][testC]=='O'){
+					neighbors++;
+				}
+			}
+			//end top
+		
+			//right side
+			if(testC<cols-1){
+				if(array[testR][testC+1]=='O'){
+					neighbors++;
+				}
+			}
+			else{
+				if(array[testR][0]=='O'){
+					neighbors++;
+				}
+			}
+			//end right side
+		
+			//left side
+			if(testC>=1){
+				if(array[testR][testC-1]=='O'){
+					neighbors++;
+				}
+			}
+			else{
+				if(array[testR][cols-1]=='O'){
+					neighbors++;
+				}
+			}
+			//end left side
+			
+			//bottom
+			if(testR<rows-1){
+				if(array[testR+1][testC]=='O'){
+					neighbors++;
+				}
+			}
+			else{
+				if(array[0][testC]=='O'){
+					neighbors++;
+				}
+			}
+		//	end bottom
+		
+			//top-right
+			if(testR>0&&testC<cols-1){
+				if(array[testR-1][testC+1]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR==0&&testC<cols-1){
+				if(array[rows-1][testC+1]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR>0&&testC==cols-1){
+				if(array[testR-1][0]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR==0&&testC==cols-1){
+				if(array[rows-1][0]=='O'){
+					neighbors++;
+				}
+			}//end top-right
+			
+			//top-left
+			if(testR>0&&testC>0){
+				if(array[testR-1][testC-1]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR>0&&testC==0){
+				if(array[testR-1][cols-1]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR==0&&testC>0){
+				if(array[rows-1][testC-1]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR==0&&testC==0){
+				if(array[rows-1][cols-1]=='O'){
+					neighbors++;
+				}
+			}//end top-left
+			
+			//bottom-left
+			if(testR<rows-1&&testC>0){
+				if(array[testR+1][testC-1]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR<rows-1&&testC==0){
+				if(array[testR+1][cols-1]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR==rows-1&&testC>0){
+				if(array[0][testC-1]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR==rows-1&&testC==0){
+				if(array[0][cols-1]=='O'){
+					neighbors++;
+				}
+			}//end bottom-left
+			
+			//bottom-right
+			if(testR<rows-1&&testC<cols-1){
+				if(array[testR+1][testC+1]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR<rows-1&&testC==cols-1){
+				if(array[testR+1][0]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR==rows-1&&testC<cols-1){
+				if(array[0][testC+1]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR==rows-1&&testC==cols-1){
+				if(array[0][0]=='O'){
+					neighbors++;
+				}
+			}//end bottom-right
+		}//end valid cell if
+		
+		return neighbors;
+	}//end neighborCount
+
+	
+	/**
+* Update the state to represent the next society.
+* Typically, some cells will die off while others are born.
+*/
+	public void update() {
+		char[][] temp = new char[rows][cols];
+		for (int i=0; i<rows; i++){
+			for (int j=0; j<cols; j++){
+				temp[i][j]= '.';
+			}
+		}
+		
+		for(int i=0; i<rows; i++){
+			for(int j=0; j<cols; j++){
+				int neighbors = neighborCount(i,j);
+				
+				if(array[i][j]=='O'){
+					if(neighbors<2||neighbors>3){
+						temp[i][j]='.';
+					}
+				}//end existing cell if
+				
+				else {
+					if(neighbors==3){
+						temp[i][j]='O';
+					}
+				}//end empty cell else
+			}//end column for
+		}//end row for
+		array = temp;
+		generation++;
+	}//end update
+
+
+}//end class

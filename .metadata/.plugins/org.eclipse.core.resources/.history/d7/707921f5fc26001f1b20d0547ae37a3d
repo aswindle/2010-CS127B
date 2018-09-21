@@ -1,0 +1,11 @@
+
+public class MainTestCrap {
+	public static void main(String[]args){
+		MineSweeper test1 = new MineSweeper(4, 4, 1);
+		System.out.println(test1.toString());
+		System.out.println("Mines:" + test1.getTotalMineCount());
+		test1.click(0, 0);
+		System.out.println(test1.toString());
+		System.out.println(test1.won());
+	}
+}

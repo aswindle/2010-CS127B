@@ -1,0 +1,50 @@
+import org.junit.Test;
+import static org.junit.Assert.*;
+import java.util.NoSuchElementException;
+
+public class LinkedQueueTest {
+
+	@Test
+	public void testAddIsEmptyPeek(){
+		OurQueue<String> q = new LinkedQueue<String>();
+		assertTrue(q.isEmpty());
+		q.add("A");
+		assertFalse(q.isEmpty());
+		assertEquals("A", q.peek());
+		q.add("B");
+		assertEquals("A", q.peek());
+		q.add("C");
+		assertEquals("A", q.peek());
+		q.add("D");
+		assertEquals("A", q.peek());
+	}
+	
+	@Test
+	public void testRemove() {
+		OurQueue<String> q = new LinkedQueue<String>();
+		q.add("A");
+		assertEquals("A", q.remove());
+		assertTrue(q.isEmpty());
+		q.add("A");
+		q.add("B");
+		q.add("C");
+		q.add("D");
+		assertEquals("A", q.peek());
+		assertEquals("A", q.remove());
+		assertEquals("B", q.remove());
+		assertEquals("C", q.remove());
+		assertEquals("D", q.remove());
+	}
+	
+	@Test(expected = NoSuchElementException.class)
+	public void testPeekOnEmpty() {
+		OurQueue<String> q = new LinkedQueue<String>();
+		String front = q.peek();
+	}
+	
+	@Test(expected = NoSuchElementException.class)
+	public void testRemoveOnEmpty() {
+		OurQueue<String> q = new LinkedQueue<String>();
+		String front = q.remove();
+	}
+}

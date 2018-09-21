@@ -1,0 +1,21 @@
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+
+public class GameOfLifeTest {
+
+	@Test
+	public void testNumberAndCellAtAndGrowCellAt() {
+	GameOfLife tester = new GameOfLife(3, 3);
+	tester.growCellAt(0,0);
+	tester.growCellAt(0,2);
+	assertEquals(3, tester.numberOfRows());
+	assertEquals(3, tester.numberOfColumns());
+	assertTrue(tester.cellAt(0, 0));
+	assertTrue(tester.cellAt(0,2));
+	assertTrue("1"!=tester.toString());
+	}
+	
+	
+	
+}

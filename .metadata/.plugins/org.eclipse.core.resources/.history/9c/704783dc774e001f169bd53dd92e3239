@@ -1,0 +1,106 @@
+public class DiceTray {
+
+	private class BoggleTile {
+		private char element;
+		private boolean used;
+
+		private BoggleTile(char setChar) {
+			used = false;
+			element = setChar;
+		}
+	}
+
+	private BoggleTile[][] tray;
+
+	public DiceTray(char[][] charArray) {
+		for (int row = 0; row < 4; row++) {
+			for (int col = 0; col < 4; col++) {
+				tray[row][col] = new BoggleTile(charArray[row][col]);
+			}
+		}
+	}
+
+	public boolean stringFound(String word) {
+		word = word.toUpperCase();
+		while (word.contains("QU")) {
+			int i = word.indexOf('Q');
+			word = word.substring(0, i) + word.substring(i + 1);
+		}
+		if (!foundHelp(word.charAt(0), '0', 0, 0))
+			return false;
+		else {
+			for (int i = 1; i < word.length(); i++) {
+				if (!foundHelp(word.charAt(i), word.charAt(i - 1), 0, 0))
+					return false;
+			}
+		}
+		return true;
+	}
+
+	private boolean foundHelp(char lookFor, char prev, int startRow,
+			int startCol) {
+		int prevRow = 4;
+		int prevCol = 4;
+		if (prev == '0') {
+			for (int r = 0; r < 4; r++) {
+				for (int c = 0; c < 4; c++) {
+					if (tray[r][c].element == lookFor)
+						return true;
+				}
+			}
+			return false;
+		} else {
+			for (int r = startRow; r<4; r++){
+				for(int c = startCol; c<4; c++){
+					if(tray[r][c].element==prev){
+						prevRow = r;
+						prevCol = c;
+					}
+				}
+			}
+			if(prevRow<4&&prevCol<4){
+				boolean isAround = checkAround(lookFor, prevRow, prevCol);
+				if(isAround) return true;
+				else return foundHelp(lookFor, prev, startRow, startCol+1);
+			}
+			else return false;
+		}
+
+	}
+
+	private boolean checkAround(char lookFor, int row, int col) {
+		//check top left
+		if(row-1>=0&&col-1>=0){
+			if(tray[row-1][col-1].element==lookFor) return true;
+		}
+		//check top
+		if(row-1>=0){
+			if(tray[row-1][col].element==lookFor) return true;
+		}
+		//check top right
+		if(row-1>=0&&col+1<4){
+			if(tray[row-1][col+1].element==lookFor) return true;
+		}
+		//check right
+		if(col+1<4){
+			if(tray[row][col+1].element==lookFor) return true;
+		}
+		//check bottom right
+		if(row+1<4&&col+1<4){
+			if(tray[row+1][col+1].element==lookFor) return true;
+		}
+		//check bottom
+		if(row+1<4){
+			if(tray[row+1][col].element==lookFor) return true;
+		}
+		//check bottom left
+		if(row+1<4&&col-1>=0){
+			if(tray[row+1][col-1].element==lookFor) return true;
+		}
+		//check left
+		if(col-1>=0){
+			if(tray[row][col-1].element==lookFor) return true;
+		}
+		return false;
+	}
+}

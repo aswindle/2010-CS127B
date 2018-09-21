@@ -1,0 +1,60 @@
+import java.util.EmptyStackException;
+
+public class LinkedStack<E> implements OurStack<E> {
+
+	private class Node {
+
+		// Instance vars
+		private E data;
+		private Node next;
+
+		// Constructor for Node
+		public Node(E element, Node link) {
+			data = element;
+			next = link;
+		}
+	}
+
+	private Node top;
+	private int size;
+
+	public LinkedStack() {
+		top = null;
+		size = 0;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		if (size == 0)
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public E peek() throws EmptyStackException {
+		if (size == 0)
+			throw new EmptyStackException();
+		else
+			return top.data;
+	}
+
+	@Override
+	public E pop() throws EmptyStackException {
+		if (size == 0)
+			throw new EmptyStackException();
+		else {
+			E temp = top.data;
+			top = top.next;
+			size--;
+			return temp;
+		}
+	}
+
+	@Override
+	public void push(E element) {
+		top = new Node(element, top);
+		size++;
+	}
+
+}

@@ -1,0 +1,17 @@
+
+public class GameOfLifePlayTime {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		GameOfLife society = new GameOfLife(5, 5);
+		String gen = society.toString();
+		System.out.println(gen);
+		society.growCellAt(0, 0);
+		gen = society.toString();
+		System.out.println(gen);
+
+	}
+
+}

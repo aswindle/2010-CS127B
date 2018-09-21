@@ -1,0 +1,195 @@
+public class DiceTray {
+
+	private class BoggleTile {
+		private char element;
+		private boolean used;
+
+		private BoggleTile(char setChar) {
+			used = false;
+			element = setChar;
+		}
+	}
+
+	private String curWord;
+	private BoggleTile[][] tray;
+
+	public DiceTray(char[][] charArray) {
+		tray = new BoggleTile[4][4];
+		for (int row = 0; row < 4; row++) {
+			for (int col = 0; col < 4; col++) {
+				tray[row][col] = new BoggleTile(charArray[row][col]);
+			}
+		}
+	}
+
+	public boolean stringFound(String word) {
+		// changes word to all uppercase, removes any QUs
+		word = word.toUpperCase();
+		while (word.contains("QU")) {
+			int i = word.indexOf('Q');
+			word = word.substring(0, i) + word.substring(i + 1);
+		}
+		// sets instance var to save word; appends * to signal successfully
+		// found
+		curWord = word; // + '*';
+
+		for (int r = 0; r < 4; r++) {
+			for (int c = 0; c < 4; c++) {
+				if (foundHelp(0, r, c))
+					return true;
+			}
+		}
+		return false;
+
+	}
+
+	/*
+	 * private int possibleStarts(){ int starts = 0; for(int r=0; r<4; r++){
+	 * for(int c=0; c<4; c++){ if(tray[r][c].element==curWord.charAt(0)) starts
+	 * ++; } } return starts; }
+	 */
+
+	private boolean foundHelp(int wordPosition, int startRow, int startCol) {
+
+		if (wordPosition == curWord.length())
+			return true;
+		char lookFor = curWord.charAt(wordPosition);
+		// if(tray[startRow][startCol].used = true) return false;
+		if (lookFor == tray[startRow][startCol].element) {
+			BoggleTile nextTile = getTile(1, startRow, startCol);
+			if (nextTile != null && nextTile.used != true) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow - 1, startCol - 1))
+					return true;
+				nextTile.used = false;
+			}
+			nextTile = getTile(2, startRow, startCol);
+			if (nextTile != null && nextTile.used != true) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow - 1, startCol))
+					return true;
+				nextTile.used = false;
+			}
+			nextTile = getTile(3, startRow, startCol);
+			if (nextTile != null && nextTile.used != true) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow - 1, startCol + 1))
+					return true;
+				nextTile.used = false;
+			}
+			nextTile = getTile(4, startRow, startCol);
+			if (nextTile != null && nextTile.used != true) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow, startCol + 1))
+					return true;
+				nextTile.used = false;
+			}
+			nextTile = getTile(5, startRow, startCol);
+			if (nextTile != null && nextTile.used != true) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow + 1, startCol + 1))
+					return true;
+				nextTile.used = false;
+			}
+			nextTile = getTile(6, startRow, startCol);
+			if (nextTile != null && nextTile.used != true) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow + 1, startCol))
+					return true;
+				nextTile.used = false;
+			}
+			nextTile = getTile(7, startRow, startCol);
+			if (nextTile != null && nextTile.used != true) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow + 1, startCol - 1))
+					return true;
+				nextTile.used = false;
+			}
+			nextTile = getTile(8, startRow, startCol);
+			if (nextTile != null && nextTile.used != true) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow, startCol - 1))
+					return true;
+				nextTile.used = false;
+			}
+			return false;
+
+		} else {
+			return false;
+		}
+	}
+
+	/*
+	 * Positions for looking around: 
+	 * 1 2 3 
+	 * 8 x 4 
+	 * 7 6 5
+	 */
+	private BoggleTile getTile(int i, int row, int col) {
+		if(i==1){
+			if(row-1>=0&&col-1>=0){
+				return tray[row-1][col-1];
+			}
+			else return null;
+		}
+		else if(i==2){
+			if(row-1>=0){
+				return tray[row-1][col];
+			}
+			else return null;
+		}
+		else if(i==3){
+			if(row-1>=0&&col+1<4){
+				return tray[row-1][col+1];
+			}
+			else return null;
+		}
+		else if(i==4){
+			if(col+1<4){
+				return tray[row][col+1];
+			}
+			else return null;
+		}
+		else if(i==5){
+			if(row+1<4&&col+1<4){
+				return tray[row+1][col+1];
+			}
+			else return null;
+		}
+		else if(i==6){
+			if(row+1<4){
+				return tray[row+1][col];
+			}
+			else return null;
+		}
+		else if(i==7){
+			if(row+1<4&&col-1>=0){
+				return tray[row+1][col-1];
+			}
+			else return null;
+		}
+		else if(i==8){
+			if(col-1>=0){
+				return tray[row][col-1];
+			}
+			else return null;
+		}
+		return null;
+	}
+
+	/*
+	 * private int checkAroundCol(char lookFor, int row, int col) { //check top
+	 * left if(row-1>=0&&col-1>=0){ if(tray[row-1][col-1].element==lookFor)
+	 * return col-1; } //check top if(row-1>=0){
+	 * if(tray[row-1][col].element==lookFor) return col-1; } //check top right
+	 * if(row-1>=0&&col+1<4){ if(tray[row-1][col+1].element==lookFor) return
+	 * col-1; } //check right if(col+1<4){ if(tray[row][col+1].element==lookFor)
+	 * return col; } //check bottom right if(row+1<4&&col+1<4){
+	 * if(tray[row+1][col+1].element==lookFor) return col+1; } //check bottom
+	 * if(row+1<4){ if(tray[row+1][col].element==lookFor) return col+1; }
+	 * //check bottom left if(row+1<4&&col-1>=0){
+	 * if(tray[row+1][col-1].element==lookFor) return col+1; } //check left
+	 * if(col-1>=0){ if(tray[row][col-1].element==lookFor) return col; } return
+	 * -1; }
+	 */
+}

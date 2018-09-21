@@ -1,0 +1,26 @@
+
+public class Diophantine {
+	
+	public String problem4(){
+		String toString = "";
+		int ways;
+		for(int c = 1; c<1000; c++){
+			ways = 0;
+			toString = "";
+			for(int x =1; x<100; x++){
+				for(int y=x; y<100; y++){
+					for(int z=y; z<100; z++){
+						if(x*x+y*y+z*z==c){
+							ways++;
+							toString+=x+" "+y+" "+z+'\n';
+							if(ways==4){
+								return toString+c;
+							}
+						}
+					}
+				}
+			}
+		}
+		return "blah";
+	}
+}

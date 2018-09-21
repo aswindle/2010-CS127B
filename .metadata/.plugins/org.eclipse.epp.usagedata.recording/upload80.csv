@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+java.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1264062335568
+java.specification.version,sysinfo,,,"1.7",1264062335568
+java.vendor,sysinfo,,,"Sun Microsystems Inc.",1264062335568
+java.version,sysinfo,,,"1.7.0-ea",1264062335568
+java.vm.info,sysinfo,,,"mixed mode, sharing",1264062335568
+java.vm.name,sysinfo,,,"Java HotSpot(TM) Client VM",1264062335568
+java.vm.specification.name,sysinfo,,,"Java Virtual Machine Specification",1264062335568
+java.vm.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1264062335568
+java.vm.specification.version,sysinfo,,,"1.0",1264062335568
+java.vm.vendor,sysinfo,,,"Sun Microsystems Inc.",1264062335568
+java.vm.version,sysinfo,,,"16.0-b06",1264062335568
+started,bundle,org.eclipse.cdt.core,5.1.1.200909110608,"org.eclipse.cdt.core",1264062335958
+started,bundle,org.eclipse.cdt.managedbuilder.core,6.0.0.200909110608,"org.eclipse.cdt.managedbuilder.core",1264062336239
+started,bundle,org.eclipse.cdt.managedbuilder.gnu.ui,5.0.100.200909110608,"org.eclipse.cdt.managedbuilder.gnu.ui",1264062336239
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264062339608
+activated,view,org.eclipse.jdt.ui,3.5.1.r351_v20090821-0800,"org.eclipse.jdt.ui.PackageExplorer",1264062341714
+started,bundle,org.eclipse.compare,3.5.0.I20090514-0808,"org.eclipse.compare",1264062342806
+started,bundle,net.sf.webcat.eclipse.submitter.ui,1.3.0,"net.sf.webcat.eclipse.submitter.ui",1264062344476
+started,bundle,net.sf.webcat.eclipse.submitter,1.3.0,"net.sf.webcat.eclipse.submitter",1264062344928
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264062344944
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264062348797
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264062348890
+opened,editor,net.sf.webcat.eclipse.submitter.ui,1.3.0,"net.sf.webcat.eclipse.submitter.ui.editors.BrowserEditor",1264062363243
+activated,editor,net.sf.webcat.eclipse.submitter.ui,1.3.0,"net.sf.webcat.eclipse.submitter.ui.editors.BrowserEditor",1264062363274
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264062363289

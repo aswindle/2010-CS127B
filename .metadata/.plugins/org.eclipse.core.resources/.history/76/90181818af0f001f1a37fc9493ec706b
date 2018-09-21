@@ -1,0 +1,12 @@
+
+public class AliquotsFun {
+	
+	public static void main(String[] args){
+		
+		Aliquots test = new Aliquots();
+		System.out.println(test.toString(25));
+		System.out.println(test.factorSum(16));
+		
+	
+	}
+}

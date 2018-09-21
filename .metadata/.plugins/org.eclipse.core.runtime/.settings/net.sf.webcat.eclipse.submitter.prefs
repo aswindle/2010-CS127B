@@ -1,0 +1,6 @@
+#Wed Jan 20 22:31:07 MST 2010
+net.sf.webcat.eclipse.submitter.definitions.URL=https\://web-cat.cs.vt.edu/Web-CAT/WebObjects/Web-CAT.woa/wa/assignments/eclipse?institution\=Arizona
+eclipse.preferences.version=1
+net.sf.webcat.eclipse.submitter.identification.smtpServer=smtpgate.email.arizona.edu
+net.sf.webcat.eclipse.submitter.identification.defaultUsername=aswindle
+net.sf.webcat.eclipse.submitter.identification.emailAddress=aswindle@email.arizona.edu

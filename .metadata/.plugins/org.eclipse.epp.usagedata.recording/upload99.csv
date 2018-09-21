@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+started,bundle,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"org.eclipse.ui.workbench",1264190138867
+started,bundle,org.eclipse.ui.workbench.texteditor,3.5.0.v20090603,"org.eclipse.ui.workbench.texteditor",1264190138868
+started,bundle,org.eclipse.update.configurator,3.3.0.v20090312,"org.eclipse.update.configurator",1264190138868
+started,bundle,org.eclipse.update.core,3.2.300.v20090525,"org.eclipse.update.core",1264190138869
+started,bundle,org.eclipse.update.scheduler,3.2.200.v20081127,"org.eclipse.update.scheduler",1264190138870
+started,bundle,org.eclipse.mylyn.bugzilla.core,3.3.1.v20091215-0000-e3x,"org.eclipse.mylyn.bugzilla.core",1264190138871
+started,bundle,org.eclipse.mylyn.bugzilla.ui,3.3.1.v20091215-0000-e3x,"org.eclipse.mylyn.bugzilla.ui",1264190138871
+started,bundle,org.eclipse.mylyn.commons.net,3.3.0.v20091013-0200-e3x,"org.eclipse.mylyn.commons.net",1264190138871
+started,bundle,org.eclipse.mylyn.commons.ui,3.3.1.v20091215-0000-e3x,"org.eclipse.mylyn.commons.ui",1264190138889
+started,bundle,org.eclipse.mylyn.context.core,3.3.1.v20091215-0000-e3x,"org.eclipse.mylyn.context.core",1264190138890
+started,bundle,org.eclipse.mylyn.context.ui,3.3.1.v20091215-0000-e3x,"org.eclipse.mylyn.context.ui",1264190138891
+started,bundle,org.eclipse.mylyn.monitor.ui,3.3.1.v20091215-0000-e3x,"org.eclipse.mylyn.monitor.ui",1264190138891
+started,bundle,org.eclipse.mylyn.tasks.ui,3.3.1.v20091215-0000-e3x,"org.eclipse.mylyn.tasks.ui",1264190138893
+started,bundle,org.eclipse.mylyn.team.ui,3.3.1.v20091215-0000-e3x,"org.eclipse.mylyn.team.ui",1264190138893
+started,bundle,net.sf.eclipsecs.core,5.0.1.200908032119,"net.sf.eclipsecs.core",1264190138894
+started,bundle,net.sf.eclipsecs.ui,5.0.1.200908032119,"net.sf.eclipsecs.ui",1264190138894
+os,sysinfo,,,"win32",1264190138898
+arch,sysinfo,,,"x86",1264190138898
+ws,sysinfo,,,"win32",1264190138898
+locale,sysinfo,,,"en_US",1264190138898
+processors,sysinfo,,,"2",1264190138898
+java.runtime.name,sysinfo,,,"Java(TM) SE Runtime Environment",1264190138898
+java.runtime.version,sysinfo,,,"1.7.0-ea-b66",1264190138898
+java.specification.name,sysinfo,,,"Java Platform API Specification",1264190138898
+java.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1264190138898

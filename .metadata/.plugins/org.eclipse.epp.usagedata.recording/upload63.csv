@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+java.version,sysinfo,,,"1.7.0-ea",1264051446911
+java.vm.info,sysinfo,,,"mixed mode, sharing",1264051446911
+java.vm.name,sysinfo,,,"Java HotSpot(TM) Client VM",1264051446911
+java.vm.specification.name,sysinfo,,,"Java Virtual Machine Specification",1264051446911
+java.vm.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1264051446911
+java.vm.specification.version,sysinfo,,,"1.0",1264051446911
+java.vm.vendor,sysinfo,,,"Sun Microsystems Inc.",1264051446911
+java.vm.version,sysinfo,,,"16.0-b06",1264051446911
+started,bundle,org.eclipse.equinox.p2.ui,1.0.101.R35x_v20090819,"org.eclipse.equinox.p2.ui",1264051462463
+started,bundle,org.eclipse.equinox.p2.ui.sdk,1.0.100.v20090520-1905,"org.eclipse.equinox.p2.ui.sdk",1264051462485
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264051462632
+executed,command,org.eclipse.ui,3.5.1.M20090902-1000,"org.eclipse.ui.edit.paste",1264051509499
+executed,command,org.eclipse.ui,3.5.1.M20090902-1000,"org.eclipse.ui.help.installationDialog",1264051520799
+executed,command,org.eclipse.ui,3.5.1.M20090902-1000,"org.eclipse.ui.edit.paste",1264051541501
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264051567052
+executed,command,org.eclipse.equinox.p2.ui.sdk,1.0.100.v20090520-1905,"org.eclipse.equinox.p2.ui.sdk.install",1264051567089
+activated,view,org.eclipse.jdt.ui,3.5.1.r351_v20090821-0800,"org.eclipse.jdt.ui.PackageExplorer",1264051568488
+started,bundle,org.eclipse.compare,3.5.0.I20090514-0808,"org.eclipse.compare",1264051568676
+started,bundle,org.eclipse.debug.ui,3.5.1.v20090811_r351,"org.eclipse.debug.ui",1264051570820
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264051575658
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264051580704
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264051587242
+started,bundle,org.eclipse.equinox.security.ui,1.0.100.v20090520-1800,"org.eclipse.equinox.security.ui",1264051613535
+executed,command,org.eclipse.ui,3.5.1.M20090902-1000,"org.eclipse.ui.help.installationDialog",1264051620663
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264051695333

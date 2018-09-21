@@ -1,0 +1,52 @@
+
+public class OldCrap {
+
+	From foundHelp
+
+	//tray[startRow][startCol].used = true;
+				if(foundHelp(wordPosition+1, startRow-1, startCol-1)) return true;
+				else//{
+				/*	if(foundHelp(wordPosition+1, startRow-1, startCol)){
+						tray[startRow][startCol].used = true;
+						return true;
+					}
+
+					if(foundHelp(wordPosition+1, startRow, startCol-1)){
+						tray[startRow][startCol].used = true;
+						return true;
+					}
+					if(foundHelp(wordPosition+1, startRow-1, startCol-1)){
+						tray[startRow][startCol].used = true;
+						return true;
+					}
+					if(foundHelp(wordPosition+1, startRow+1, startCol)){
+						tray[startRow][startCol].used = true;
+						return true;
+					}
+					if(foundHelp(wordPosition+1, startRow, startCol+1)){
+						tray[startRow][startCol].used = true;
+						return true;
+					}
+					if(foundHelp(wordPosition+1, startRow+1, startCol+1)){
+						tray[startRow][startCol].used = true;
+						return true;
+					}
+					if(foundHelp(wordPosition+1, startRow-1, startCol+1)){
+						tray[startRow][startCol].used = true;
+						return true;
+					}
+					if(foundHelp(wordPosition+1, startRow+1, startCol-1)){
+						tray[startRow][startCol].used = true;
+						return true;
+					}
+				}*/
+				return foundHelp(wordPosition + 1, startRow - 1, startCol - 1)
+						|| foundHelp(wordPosition + 1, startRow, startCol - 1)
+						|| foundHelp(wordPosition + 1, startRow - 1, startCol)
+						|| foundHelp(wordPosition + 1, startRow + 1, startCol - 1)
+						|| foundHelp(wordPosition + 1, startRow - 1, startCol + 1)
+						|| foundHelp(wordPosition + 1, startRow + 1, startCol + 1)
+						|| foundHelp(wordPosition + 1, startRow, startCol + 1)
+						|| foundHelp(wordPosition + 1, startRow + 1, startCol);
+	
+}

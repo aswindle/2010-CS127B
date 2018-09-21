@@ -1,0 +1,15 @@
+
+public class DiophantineTester {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Diophantine tester = new Diophantine();
+		System.out.println(tester.problem4());
+		
+		tester.gcd(4,8,12);
+	}
+
+}

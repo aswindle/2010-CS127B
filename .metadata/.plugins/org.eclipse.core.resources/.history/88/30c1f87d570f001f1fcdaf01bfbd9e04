@@ -1,0 +1,16 @@
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		Prime test = new Prime(10);
+		
+		long testNum = 8*5;
+		test.isPrime(testNum);
+		int a = 5;
+		double b = 5.0;
+		System.out.println(a<=b);
+
+	}
+
+}

@@ -1,0 +1,8 @@
+
+public class TesterStuff {
+	public static void main(String[]args){
+		Object anObject = new String("abc");
+		Object anotherObject = new Integer(50);
+		Integer n = (Integer)anObject;
+	}
+}

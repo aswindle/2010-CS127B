@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+java.vendor,sysinfo,,,"Sun Microsystems Inc.",1264062541157
+java.version,sysinfo,,,"1.7.0-ea",1264062541157
+java.vm.info,sysinfo,,,"mixed mode, sharing",1264062541157
+java.vm.name,sysinfo,,,"Java HotSpot(TM) Client VM",1264062541157
+java.vm.specification.name,sysinfo,,,"Java Virtual Machine Specification",1264062541157
+java.vm.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1264062541157
+java.vm.specification.version,sysinfo,,,"1.0",1264062541157
+java.vm.vendor,sysinfo,,,"Sun Microsystems Inc.",1264062541157
+java.vm.version,sysinfo,,,"16.0-b06",1264062541157
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264062542389
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264062550797
+started,bundle,net.sf.webcat.eclipse.submitter,1.3.0,"net.sf.webcat.eclipse.submitter",1264062552654
+started,bundle,org.eclipse.equinox.p2.ui,1.0.101.R35x_v20090819,"org.eclipse.equinox.p2.ui",1264062558863
+started,bundle,org.eclipse.equinox.p2.ui.sdk,1.0.100.v20090520-1905,"org.eclipse.equinox.p2.ui.sdk",1264062558972
+started,bundle,org.eclipse.equinox.p2.metadata,1.0.100.v20090525,"org.eclipse.equinox.p2.metadata",1264062559034
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264062566787
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264062571124
+started,bundle,org.eclipse.equinox.p2.extensionlocation,1.0.100.v20090520-1905,"org.eclipse.equinox.p2.extensionlocation",1264062573651
+executed,command,org.eclipse.ui,3.5.1.M20090902-1000,"org.eclipse.ui.help.installationDialog",1264062578207
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264062586568
+executed,command,org.eclipse.equinox.p2.ui.sdk,1.0.100.v20090520-1905,"org.eclipse.equinox.p2.ui.sdk.install",1264062586599
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1264062588237
+started,bundle,org.eclipse.equinox.p2.artifact.repository,1.0.101.R35x_v20090721,"org.eclipse.equinox.p2.artifact.repository",1264062588284
+started,bundle,org.eclipse.equinox.p2.publisher,1.0.0.v20090527-1812,"org.eclipse.equinox.p2.publisher",1264062588300
+started,bundle,org.eclipse.equinox.p2.touchpoint.eclipse,1.0.101.R35x_20090820-1821,"org.eclipse.equinox.p2.touchpoint.eclipse",1264062588300

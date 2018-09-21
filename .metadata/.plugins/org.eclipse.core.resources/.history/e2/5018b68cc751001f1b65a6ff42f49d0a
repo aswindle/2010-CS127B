@@ -1,0 +1,176 @@
+public class DiceTray {
+
+	private class BoggleTile {
+		private char element;
+		private boolean used;
+
+		private BoggleTile(char setChar) {
+			used = false;
+			element = setChar;
+		}
+	}
+
+	private String curWord;
+	private BoggleTile[][] tray;
+
+	public DiceTray(char[][] charArray) {
+		tray = new BoggleTile[4][4];
+		for (int row = 0; row < 4; row++) {
+			for (int col = 0; col < 4; col++) {
+				tray[row][col] = new BoggleTile(charArray[row][col]);
+			}
+		}
+	}
+
+	public boolean stringFound(String word) {
+		// changes word to all uppercase, removes any QUs
+		word = word.toUpperCase();
+		while (word.contains("QU")) {
+			int i = word.indexOf('Q');
+			word = word.substring(0, i) + word.substring(i + 1);
+		}
+		// sets instance var to save word; appends * to signal successfully
+		// found
+		curWord = word; // + '*';
+
+		for (int r = 0; r < 4; r++) {
+			for (int c = 0; c < 4; c++) {
+				tray[r][c].used = true;
+				if (foundHelp(0, r, c))
+					return true;
+				tray[r][c].used = false;
+			}
+		}
+		return false;
+
+	}
+
+	private boolean foundHelp(int wordPosition, int startRow, int startCol) {
+		System.out.println(curWord + " " + wordPosition + startRow + startCol);
+		if (wordPosition == curWord.length())
+			return true;
+		char lookFor = curWord.charAt(wordPosition);
+		if (lookFor == tray[startRow][startCol].element) {
+			BoggleTile nextTile = getTile(1, startRow, startCol);
+			System.out.println(1);
+			if (nextTile != null && nextTile.used == false) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow - 1, startCol - 1))
+					return true;
+				nextTile.used = false;
+			}
+			nextTile = getTile(2, startRow, startCol);
+			System.out.println(2);
+			if (nextTile != null && nextTile.used != true) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow - 1, startCol))
+					return true;
+				nextTile.used = false;
+			}
+			nextTile = getTile(3, startRow, startCol);
+			System.out.println(3);
+			if (nextTile != null && nextTile.used != true) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow - 1, startCol + 1))
+					return true;
+				nextTile.used = false;
+			}
+			nextTile = getTile(4, startRow, startCol);
+			System.out.println(4);
+			if (nextTile != null && nextTile.used != true) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow, startCol + 1))
+					return true;
+				nextTile.used = false;
+			}
+			nextTile = getTile(5, startRow, startCol);
+			System.out.println(5);
+			if (nextTile != null && nextTile.used != true) {
+				nextTile.used = true;
+				System.out.println("5 " + nextTile.element);
+				if (foundHelp(wordPosition + 1, startRow + 1, startCol + 1))
+					return true;
+				nextTile.used = false;
+			}
+			nextTile = getTile(6, startRow, startCol);
+			System.out.println(6);
+			if (nextTile != null && nextTile.used != true) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow + 1, startCol))
+					return true;
+				nextTile.used = false;
+			}
+			nextTile = getTile(7, startRow, startCol);
+			System.out.println(7);
+			if (nextTile != null && nextTile.used != true) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow + 1, startCol - 1))
+					return true;
+				nextTile.used = false;
+			}
+			nextTile = getTile(8, startRow, startCol);
+			System.out.println(8);
+			if (nextTile != null && nextTile.used != true) {
+				nextTile.used = true;
+				if (foundHelp(wordPosition + 1, startRow, startCol - 1))
+					return true;
+				nextTile.used = false;
+			}
+			return false;
+
+		} else {
+			return false;
+		}
+	}
+
+	/*
+	 * Positions for looking around: 
+	 * 1 2 3 
+	 * 8 x 4 
+	 * 7 6 5
+	 */
+	private BoggleTile getTile(int i, int row, int col) {
+		if(i==1){
+			if(row-1>=0&&col-1>=0){
+				return tray[row-1][col-1];
+			}
+		}
+		else if(i==2){
+			if(row-1>=0){
+				return tray[row-1][col];
+			}
+		}
+		else if(i==3){
+			if(row-1>=0&&col+1<4){
+				return tray[row-1][col+1];
+			}
+		}
+		else if(i==4){
+			if(col+1<4){
+				return tray[row][col+1];
+			}
+		}
+		else if(i==5){
+			if(row+1<4&&col+1<4){
+				return tray[row+1][col+1];
+			}
+		}
+		else if(i==6){
+			if(row+1<4){
+				return tray[row+1][col];
+			}
+		}
+		else if(i==7){
+			if(row+1<4&&col-1>=0){
+				return tray[row+1][col-1];
+			}
+		}
+		else if(i==8){
+			if(col-1>=0){
+				return tray[row][col-1];
+			}
+		}
+		return null;
+	}
+
+}

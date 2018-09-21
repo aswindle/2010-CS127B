@@ -1,0 +1,104 @@
+
+public class ArrayPriorityList<E> {
+	
+	private Object[] data;
+	private int size;
+	
+	public ArrayPriorityList() {
+		data = new Object[20];
+		size = 0;
+	}
+	
+	public int size(){
+		return size;
+	}
+	
+	public boolean isEmpty(){
+		if (size==0){
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	* If possible, insert the element at the given index.
+	* Precondition index is in the range of 0 .. size()
+	* For example, when size is 3, the only possible values
+	* for index are 0, 1, 2, and 3.
+	*
+	* @param index
+	* The index of the element to move.
+	* @param el
+	* The element to insert
+	*/
+	public void insertElementAt(int index, E el)
+	/**
+	* If possible, return a reference to the element at the given index.
+	* Precondition: index is in the range of 0 .. size() - 1
+	* For example, when size is 3, the only possible values
+	* for index are 0, 1, and 2.
+	*
+	* @param index
+	* The index of the element to move.
+	* @return A reference to to element at index index.
+	*/
+	public E getElementAt(int index)
+	/**
+	* If possible, remove the element at the given index.
+	* Precondition: index is in the range of 0 .. size() - 1
+	* For example, when size is 3, the only possible values
+	* for index are 0, 1, and 2.
+	* @param index
+	* The index of the element to move.
+	*/
+	public void removeElementAt(int index)
+	/**
+	* If possible, swap the element located at index with the element at
+	* index+1. An attempt to lower the priority of the element at index
+	* size()-1 has no effect.
+	* Precondition: index is in the range of 0 .. size() - 1
+	* For example, when size is 3, the only possible values
+	* for index are 0, 1, and 2. If index == size()-1, no change occurs.
+	* @param index
+	* The index of the element to move
+	* @throws IllegalArgumentException
+	*/
+	public void lowerPriorityOf(int index)
+	/**
+	* If possible, swap the element located at index with the element at
+	* index-1. An attempt to raise the priority at index 0 has no effect.
+	* Precondition: index is in the range of 0 .. size() - 1
+	* For example, when size is 3, the only possible values
+	* for index are 0, 1, and 2.
+	* @param index
+	* The index of the element to move
+	*/
+	public void raisePriorityOf(int index)
+	/**
+	* Return a copy of all elements as an array of Objects that is the size of
+	* this PriorityList and in the same order. If there are no elements in this
+	* list, return new Object[0];. A change to the return value must not affect
+	* this ArrayPriorityList object.
+	*
+	* @return An array of Objects where capacity == size()
+	*/
+	public Object[] toArray()
+	/**
+	* If possible, move the element at the given index to the end of this list.
+	* An attempt to move the last element to the last has no effect.
+	* Precondition: index is in the rangeof 0 .. size() - 1
+	*
+	* @param index
+	* The index of the element to move to end of this list.
+	*/
+	public void moveToLast(int index)
+	/**
+	* If possible, move the element at the given index to the front of this
+	* list. An attempt to move the top element to the top has no effect.
+	* Precondition: index is in the rangeof 0 .. size() - 1
+	*
+	* @param index
+	* The index of the element to move to the beginning of this list.
+	*/
+	public void moveToTop(int index)
+}

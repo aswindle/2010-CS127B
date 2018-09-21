@@ -1,0 +1,25 @@
+public class LinkedSet<E> {
+	
+	// Private class used to create linked structure
+	private class Node {
+
+		// Instance vars
+		private E data;
+		private Node next;
+
+		// Constructor for Node
+		public Node(E element, Node link) {
+			data = element;
+			next = link;
+		}
+	}
+	
+	private Node current;
+	private int size;
+	
+	public LinkedStack() {
+		top = null;
+		size = 0;
+	}
+
+}

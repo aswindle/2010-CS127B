@@ -1,0 +1,66 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
+
+public class RandomWriterWithHashMap {
+
+	public static void main(String[] args){
+		RandomWriterWithHashMap rw = new RandomWriterWithHashMap("animals.txt", 2);
+		System.out.println("Constructed");
+		rw.printRandom(5);
+	}
+	
+	
+	private int seedLength;
+	private String fileName;
+	private String text;
+	private HashMap<String, ArrayList<Character>> map;
+	
+	public RandomWriterWithHashMap(String name, int length){
+		fileName = name;
+		seedLength = length;
+		text = textString();
+		text+=text.substring(0, seedLength);
+		buildMap();
+	}
+
+	private String textString() {
+		Scanner scan = null;
+		try {
+			scan = new Scanner(new File(fileName));
+		} catch (FileNotFoundException e) {
+		}
+		StringBuilder tempText = null;
+		System.out.println(scan.nextLine());
+		while(scan.hasNextLine()){
+			tempText.append(scan.nextLine()+" ");
+		}
+		return tempText.toString();
+	}
+	
+	private void buildMap(){
+		for(int i=0; i<(text.length()-seedLength); i++){
+			String key = text.substring(i, i+seedLength);
+			if(!map.containsKey(key)){
+				map.put(key, new ArrayList<Character>());
+			}
+			map.get(key).add(text.charAt(i+seedLength));
+		}
+	}
+	
+	public void printRandom(int num){
+		int randStart = (int)(Math.random()*(text.length()-seedLength));
+		String randKey = text.substring(randStart, randStart + seedLength);
+		String randText = randKey;
+		for(int i=0; i<num; i++){
+			char randChar = map.get(randKey).get((int)(Math.random()*(map.get(randKey).size()-1)));
+			randText += randChar;
+			randKey = randText.substring(randText.length()-seedLength);
+		}
+		System.out.println(randText);
+	}
+	
+}

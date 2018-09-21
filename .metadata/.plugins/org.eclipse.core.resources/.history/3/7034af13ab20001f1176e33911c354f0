@@ -1,0 +1,18 @@
+import org.junit.Test;
+import static org.junit.Assert.*;
+import java.util.NoSuchElementException;
+
+public class LinkedQueueTest {
+
+	@Test(expected = NoSuchElementException.class)
+	public void testPeekOnEmpty() {
+		OurQueue<String> q = new LinkedQueue<String>();
+		String front = q.peek();
+	}
+	
+	@Test(expected = NoSuchElementException.class)
+	public void testRemoveOnEmpty() {
+		OurQueue<String> q = new LinkedQueue<String>();
+		String front = q.remove();
+	}
+}

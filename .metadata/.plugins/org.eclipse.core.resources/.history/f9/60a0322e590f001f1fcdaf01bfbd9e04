@@ -1,0 +1,13 @@
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		Prime test = new Prime(10);
+		
+		long testNum = 13;
+		test.isPrime(testNum);
+		
+	}
+
+}

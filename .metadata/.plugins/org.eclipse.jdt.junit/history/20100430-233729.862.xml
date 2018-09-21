@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="BoggleTest" project="Boggle" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="BoggleTest" time="1.966">
+    <testcase name="TestGetWordsFoundAndOtherStuffWithSetTray" classname="BoggleTest" time="1.339"/>
+    <testcase name="testOtherTray" classname="BoggleTest" time="0.626"/>
+  </testsuite>
+</testrun>

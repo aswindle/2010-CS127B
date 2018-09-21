@@ -1,0 +1,157 @@
+/*Alex Swindle
+ * C SC 127B
+ * Section Leader: Andrew Emmott
+ */
+
+
+public class LinkedPriorityList<E> implements PriorityList<E>{
+
+	// This private inner class saves lots of typing and is hidden from outsiders
+	private class Node {
+	
+		// These instance variables can be accessed from the enclosing class
+		private E data;
+		private Node next;
+	
+		public Node(E element) {
+			data = element;
+			next = null;
+		}
+	
+		public Node(E element, Node link) {
+			data = element;
+			next = link;
+		}
+	}
+	
+	// These instance variables belong to the enclosing class
+	private Node first;
+	private int size;
+	
+	// Create an empty list with zero elements
+	public LinkedPriorityList() {
+		first = null;
+		size = 0;
+	}
+	
+	private Node getNodeAt(int index){
+		Node temp=first;
+		if(index>0){
+			for(int i=0; i<index; i++){
+				temp = temp.next;
+			}
+		}
+		else {
+			temp = first;
+		}
+		return temp;
+	}
+	
+	@Override
+	public E getElementAt(int index) throws IllegalArgumentException {
+		if(index>=0&&index<size){
+			return getNodeAt(index).data;
+		}
+		else{
+			throw new IllegalArgumentException();
+		}
+	}
+
+	@Override
+	public void insertElementAt(int index, E el) throws IllegalArgumentException {
+		if(index>=0&&index<size){
+			Node temp = getNodeAt(index-1);
+			Node temp2 = temp.next;
+			temp.next = new Node(el);
+			temp.next.next=temp2;
+			size++;
+		}
+	}
+
+	@Override
+	public boolean isEmpty() {
+		if(size==0&&first==null){
+			return true;
+		}
+		else return false;
+	}
+
+	@Override
+	public void lowerPriorityOf(int index) throws IllegalArgumentException {
+		if(index>0&&index<size){
+			if(index!=size-1){
+				Node temp = getNodeAt(index);
+				E loweredEl = temp.data;
+				Node temp2 = temp.next;
+				temp.data = temp2.data;
+				temp2.data = loweredEl;
+			}
+		}
+		else {
+			throw new IllegalArgumentException();
+		}
+	}
+
+	@Override
+	public void moveToLast(int index) throws IllegalArgumentException {
+		if(index>=0&&index<size){
+			if(index!=size-1){
+				Node temp = getNodeAt(index);
+				Node temp2 = getNodeAt(index);
+				temp.next = null;
+				temp2 = temp2.next;
+				while(temp2.next!=null){
+					temp2 = temp2.next;
+				}
+				temp2 = temp2.next;
+				temp2.next = temp;
+			}
+		}
+		else throw new IllegalArgumentException();
+		
+	}
+
+	@Override
+	public void moveToTop(int index) throws IllegalArgumentException {
+		if(index>=0&&index<size){
+			if(index>0&&index<size-1){
+				Node preMoved = getNodeAt(index-1);
+				Node moved = preMoved.next;
+				Node postMoved = moved.next;
+				Node tempFirst = first;
+				first = moved;
+				first.next = tempFirst;
+				preMoved.next = postMoved;
+			}
+	
+		}
+		else throw new IllegalArgumentException();
+		
+	}
+
+	@Override
+	public void raisePriorityOf(int index) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeElementAt(int index) throws IllegalArgumentException {
+		if(index>0&&index<size){
+
+		}
+		
+	}
+
+	@Override
+	public int size() {
+		return size;
+	}
+
+	@Override
+	public Object[] toArray() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,14 @@
+
+public class TestRun {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		GameTree aGame = new GameTree("t2UofATEST.txt");
+		System.out.println(aGame.toString());
+		
+
+	}
+
+}

@@ -1,0 +1,139 @@
+public class Diophantine {
+
+	public String problem4() {
+		String toString = "";
+		int ways;
+		for (int c = 1; c < 1000; c++) {
+			ways = 0;
+			toString = "";
+			for (int x = 1; x < 100; x++) {
+				for (int y = x; y < 100; y++) {
+					for (int z = y; z < 100; z++) {
+						if (x * x + y * y + z * z == c) {
+							ways++;
+							toString += x + " " + y + " " + z + '\n';
+							if (ways == 4) {
+								return toString + c;
+							}
+						}
+					}
+				}
+			}
+		}
+		return "blah";
+	}
+
+	public int gcd(int x, int y, int z) {
+		int min = Math.min(x, y);
+		min = Math.min(min, z);
+		int max = Math.max(x, y);
+		max = Math.max(max, z);
+		int gcd = 1;
+		for (int test = gcd; test <= min; test++) {
+			if (x % test == 0 && y % test == 0 && z % test == 0) {
+				gcd = test;
+			}
+		}
+		return gcd;
+	}
+
+	public String problem10a() {
+		String toString = "";
+		int solutions = 0;
+		while (solutions < 5) {
+			for (int x = 1; x < 100; x++) {
+				for (int y = 1; y < 100; y++) {
+					for (int z = 1; z < 100; z++) {
+						if (gcd(x, y, z) == 1) {
+							if (x * x + 2 * y * y == z * z) {
+								solutions++;
+								toString += x + " " + y + " " + z + '\n';
+							}
+						}
+					}
+				}
+			}
+		}
+		return toString;
+	}
+
+	public String problem10b() {
+		String toString = "";
+		int solutions = 0;
+		for (int x = 1; x < 100; x++) {
+			for (int y = 1; y < 100; y++) {
+				for (int z = 1; z < 100; z++) {
+					if (gcd(x, y, z) == 1) {
+						if (x * x + y * y == 2 * z * z) {
+							solutions++;
+							toString += x + " " + y + " " + z + '\n';
+						}
+					}
+				}
+			}
+		}
+		return toString;
+	}
+	
+	public String problem11a(){
+		String toString = "";
+		for(int x=1; x<100; x++){
+			int y = x+1;
+			int z = y+1;
+			if(x*x+y*y==z*z){
+				toString+=x+" "+y+" "+z;
+				return toString;
+			}
+		}
+		return "blah";
+	}
+	
+	public String problem11b(){
+		String toString = "";
+		for(int a=1; a<100; a++){
+			int b = a+1;
+			int c = a+2;
+			int d = a + 3;
+			int e = a+4;
+			int f = a+5;
+			int g = a+6;
+			if(a*a+b*b+c*c+d*d==e*e+f*f+g*g){
+				toString+=a+" "+b+" "+c+" "+d+" "+e+" "+f+" "+g;
+				return toString;
+			}
+		}
+		return "blah";
+	}
+	
+	public String problem9a(){
+		String toString = "";
+		int solutions = 0;
+		while(solutions<5){
+			for(int x=1; x<100; x++){
+				for(int y=1; y<100; y++){
+					if((x*x-5*y*y==1)||(x*x-5*y*y==-1)){
+						toString+=x+" "+y+'\n';
+						solutions++;
+					}
+				}
+			}
+		}
+		return toString;
+	}
+	
+	public String problem10a2(){
+		String toString = "";
+		int solutions = 0;
+		for(solutions; solutions<4; solutions++){
+			for(int x=1; x<100; x++){
+				for(int y=1; y<100; y++){
+					if((x*x-10*y*y==1)||(x*x-10*y*y==-1)){
+						toString+=x+" "+y+'\n';
+						solutions++;
+					}
+				}
+			}
+		}
+		return toString;
+	}
+}

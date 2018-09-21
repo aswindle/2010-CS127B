@@ -1,0 +1,22 @@
+public class MainTest {
+
+	public static void main(String[] args) {
+		boolean[][] b1 = { { false, false, false, false, false },
+				{ false, false, true, true, false },
+				{ false, false, false, true, false },
+				{ false, false, false, true, false },
+				{ false, false, false, false, false } };
+		MineSweeper test = new MineSweeper(b1);
+		System.out.println(test.toString());
+		test.click(1, 0);
+		System.out.println(test.toString());
+		test.click(0, 0);
+		System.out.println(test.toString());
+		test.click(1, 0);
+		System.out.println(test.toString());
+		test.toggleFlagged(1, 2);
+		System.out.println(test.toString());
+		test.click(2, 0);
+		System.out.println(test.toString());
+	}
+}

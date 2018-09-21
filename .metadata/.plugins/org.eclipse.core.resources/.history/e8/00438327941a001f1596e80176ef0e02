@@ -1,0 +1,199 @@
+/*Alex Swindle
+ * C SC 127B
+ * Section Leader: Andrew Emmott
+ */
+
+
+public class LinkedPriorityList<E> implements PriorityList<E>{
+
+	// This private inner class saves lots of typing and is hidden from outsiders
+	private class Node {
+	
+		// These instance variables can be accessed from the enclosing class
+		private E data;
+		private Node next;
+	
+		public Node(E element) {
+			data = element;
+			next = null;
+		}
+	
+		public Node(E element, Node link) {
+			data = element;
+			next = link;
+		}
+	}
+	
+	// These instance variables belong to the enclosing class
+	private Node first;
+	private int size;
+	
+	// Create an empty list with zero elements
+	public LinkedPriorityList() {
+		first = null;
+		size = 0;
+	}
+	
+	private Node getNodeAt(int index){
+		Node temp=first;
+		if(index>0){
+			for(int i=0; i<index; i++){
+				temp = temp.next;
+			}
+		}
+		else {
+			temp = first;
+		}
+		return temp;
+	}
+	
+	@Override
+	public E getElementAt(int index) throws IllegalArgumentException {
+		if(index>=0&&index<size){
+			return getNodeAt(index).data;
+		}
+		else{
+			throw new IllegalArgumentException();
+		}
+	}
+
+	@Override
+	public void insertElementAt(int index, E el) throws IllegalArgumentException {
+		if(index>0&&index<=size){
+			Node temp = getNodeAt(index-1);
+			Node temp2 = temp.next;
+			temp.next = new Node(el, temp2);
+			size++;
+		}
+		else if(index==0){
+			Node tempFirst = first;
+			first = new Node(el, tempFirst);
+			size++;
+		}
+		else throw new IllegalArgumentException();
+	}
+
+	@Override
+	public boolean isEmpty() {
+		if(size==0&&first==null){
+			return true;
+		}
+		else return false;
+	}
+
+	@Override
+	public void lowerPriorityOf(int index) throws IllegalArgumentException {
+		if(index>=0&&index<size){
+			if(index!=size-1){
+				Node prev = getNodeAt(index);
+				E loweredEl = prev.data;
+				Node next = prev.next;
+				E nextEl = next.data;
+				prev.data = nextEl;
+				next.data = loweredEl;
+			}
+		}
+		else {
+			throw new IllegalArgumentException();
+		}
+	}
+
+	@Override
+	public void moveToLast(int index) throws IllegalArgumentException {
+		if(index>=0&&index<size){
+			if(index!=size-1){
+				Node moved = getNodeAt(index);
+				Node holder = getNodeAt(index);
+				holder.data = holder.next.data;
+				holder.next = holder.next.next;
+				while(holder.next!=null){
+					holder = holder.next;
+				}
+				holder.next = moved;
+				moved.next = null;
+			}
+		}
+		else throw new IllegalArgumentException();
+	}
+
+	@Override
+	public void moveToTop(int index) throws IllegalArgumentException {
+		if(index>=0&&index<size){
+			if(index>0&&index<size-1){
+				Node preMoved = getNodeAt(index-1);
+				Node moved = preMoved.next;
+				Node postMoved = moved.next;
+				Node tempFirst = first;
+				first = moved;
+				first.next = tempFirst;
+				preMoved.next = postMoved;
+			}
+			else if (index>0&&index==size-1){
+				Node secondLast = getNodeAt(size-2);
+				Node last = getNodeAt(size-1);
+				Node tempFirst = first;
+				first = last;
+				last.next = tempFirst;
+				secondLast.next = null;
+			}
+		}
+		else throw new IllegalArgumentException();
+		
+	}
+
+	@Override
+	public void raisePriorityOf(int index) throws IllegalArgumentException {
+		if (index>=0&&index<size){
+			if(index>0){
+				Node previous = getNodeAt(index-1);
+				E preEl = previous.data;
+				Node next = previous.next;
+				E nextEl = next.data;
+				previous.data = nextEl;
+				next.data = preEl;
+			}
+		}
+		else throw new IllegalArgumentException();
+	}
+
+	@Override
+	public void removeElementAt(int index) throws IllegalArgumentException {
+		if(index>0&&index<size-1){
+			Node test = getNodeAt(index-1);
+			test.next = test.next.next;
+			size--;
+		}
+		else if(index==0){
+			first = first.next;
+			size--;
+		}
+		else if(index==size-1){
+			if(index!=0){
+				Node prev = getNodeAt(index-1);
+				prev.next = null;
+				size--;
+			}
+			else{
+				first = null;
+				size--;
+			}
+		}
+		else throw new IllegalArgumentException();
+		
+	}
+
+	@Override
+	public int size() {
+		return size;
+	}
+
+	@Override
+	public Object[] toArray() {
+		Object[] array = new Object[size];
+		for(int i=0; i<size; i++){
+			array[i] = getElementAt(i);
+		}
+		return array;
+	}
+
+}

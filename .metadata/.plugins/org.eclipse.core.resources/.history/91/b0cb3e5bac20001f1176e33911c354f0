@@ -1,0 +1,57 @@
+import org.junit.Test;
+import static org.junit.Assert.*;
+import java.util.NoSuchElementException;
+
+public class LinkedQueueTest {
+
+	@Test
+	public void testAddIsEmptyPeek(){
+		OurQueue<String> q = new LinkedQueue<String>();
+		assertTrue(q.isEmpty());
+		q.add("A");
+		assertFalse(q.isEmpty());
+		assertEquals("A", q.peek());
+		q.add("B");
+		assertEquals("A", q.peek());
+		q.add("C");
+		assertEquals("A", q.peek());
+		q.add("D");
+		assertEquals("A", q.peek());
+	}
+	
+	@Test
+	public void testRemove() {
+		OurQueue<String> q = new LinkedQueue<String>();
+		q.add("A");
+		assertEquals("A", q.remove());
+		assertTrue(q.isEmpty());
+		q.add("A");
+		System.out.println(q.toString());
+		q.add("B");
+		System.out.println(q.toString());
+		q.add("C");
+		System.out.println(q.toString());
+		q.add("D");
+		System.out.println(q.toString());
+		assertEquals("A", q.peek());
+		assertEquals("A", q.remove());
+		System.out.println(q.toString());
+		assertEquals("B", q.remove());
+		System.out.println(q.toString());
+		assertEquals("C", q.remove());
+		System.out.println(q.toString());
+		assertEquals("D", q.remove());
+	}
+	
+	@Test(expected = NoSuchElementException.class)
+	public void testPeekOnEmpty() {
+		OurQueue<String> q = new LinkedQueue<String>();
+		String front = q.peek();
+	}
+	
+	@Test(expected = NoSuchElementException.class)
+	public void testRemoveOnEmpty() {
+		OurQueue<String> q = new LinkedQueue<String>();
+		String front = q.remove();
+	}
+}

@@ -1,0 +1,39 @@
+
+public class EncounterRunner {
+
+	//MonsterSheet(String setName, int setHP, int setAC, int init, int speed, int ref, int fort, int will)
+	//setMelee(int vsAC, int numDie, int type, int constant)
+
+	public static void main(String[]args){
+		
+		MonsterSheet gargoyle = new MonsterSheet("Batman Gargoyle", 40, 13, -1, 4, 9, 13, 10);
+		gargoyle.setMelee(6, 2, 6, 2);
+		
+		MonsterSheet firstApp = new MonsterSheet("Batman Gargoyle", 40, 13, -1, 4, 9, 13, 10);
+		firstApp.setMelee(6, 2, 6, 2);
+
+		MonsterSheet hatter = new MonsterSheet("Batman Gargoyle", 40, 13, -1, 4, 9, 13, 10);
+		hatter.setMelee(6, 2, 6, 2);
+		
+		MonsterSheet cop = new MonsterSheet("Batman Gargoyle", 40, 13, -1, 4, 9, 13, 10);
+		cop.setMelee(6, 2, 6, 2);
+		
+		MonsterSheet splug = new MonsterSheet("Splug", 29, 17, 5, 6, 15, 13, 12);
+		splug.setMelee(6, 1, 6, 2);
+		splug.setRanged(6, 1, 6, 2);
+		
+		MonsterSheet rotter = new MonsterSheet("Rotter", 1, 13, -2, 4, 9, 13, 10);
+		rotter.setMelee(6, 2, 6, 2);
+		
+		splug.checkAC();
+		rotter.melee();
+		rotter.melee();
+		rotter.melee();
+		rotter.melee();
+		
+		
+		
+		
+		
+	}
+}

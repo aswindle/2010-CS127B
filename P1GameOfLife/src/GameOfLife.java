@@ -1,0 +1,260 @@
+/**
+* A model for John Conway's Game of Life.
+* @author Design (methods, parameters, return types) by Rick Mercer
+* 
+* 
+* Alex Swindle
+* C SC 127B
+* Project 1: Game of Life Test Class
+*/
+
+public class GameOfLife {
+	
+	//instance variables; generation prints the current iteration # for the text version
+	private int rows;
+	private int cols;
+	private char[][] array;
+	private static int generation=1;
+	
+	//constructor; for loop fills the array with '.' to make it empty
+	public GameOfLife(int testRows, int testCols) {
+		if(testRows>0&&testCols>0){
+			rows = testRows;
+			cols = testCols;
+			array = new char[rows][cols];
+			for (int i=0; i<array.length; i++){
+				for (int j=0; j<array[i].length; j++){
+					array[i][j]= '.';
+				}//end inner for
+			}//end outer for
+		}//end legit #s if
+	}//end constructor
+
+	//simple getter for the row size
+	public int numberOfRows() {
+		return rows;
+	}//end numberOfRows
+
+	//simple getter for column size
+	public int numberOfColumns() {
+		return cols;
+	}//end # cols
+
+	//grows cell at specific spot in array after checking to make sure #s supplied are valid
+	public void growCellAt(int setRow, int setCol) {
+		if(setRow>=0&&setRow<rows&&setCol>=0&&setCol<cols){
+			array[setRow][setCol] = 'O';
+		}//end if
+	}//end grow cell
+
+	//returns true if there's a cell at a certain spot, false otherwise
+	//checks to make sure the numbers supplied are within range
+	public boolean cellAt(int testRow, int testCol) {
+		if(testRow>=0&&testRow<rows&&testCol>=0&&testCol<cols){
+			if(array[testRow][testCol]=='O'){
+				return true;
+			}//end inner if
+		}//end outer if
+		return false;
+	}//end cellAt
+
+	//prints the generation number at the top, followed by the contents of the array
+	@Override
+	public String toString() {
+		String toString = "Generation " + generation + '\n';
+		for(int i=0; i<rows; i++){
+			for(int j=0; j<cols; j++){
+				toString+=array[i][j];
+			}//end col for
+			toString+= '\n';
+		}//end rows for
+		return toString;
+	}//end toString
+
+	//counts neighbors for a cell after testing to make sure location is valid
+	//inefficiently coded; uses 4 cases for wraparound rather than %
+	public int neighborCount(int testR, int testC) {
+		int neighbors = 0;
+		
+		//tests to make sure location is valid
+		if(testR>=0&&testR<rows&&testC>=0&&testC<cols){
+	
+			//top
+			if(testR>=1){
+				if(array[testR-1][testC]=='O'){
+					neighbors++;
+				}
+			}
+			else{
+				if(array[array.length-1][testC]=='O'){
+					neighbors++;
+				}
+			}//end top
+		
+			//right side
+			if(testC<cols-1){
+				if(array[testR][testC+1]=='O'){
+					neighbors++;
+				}
+			}
+			else{
+				if(array[testR][0]=='O'){
+					neighbors++;
+				}
+			}//end right side
+		
+			//left side
+			if(testC>=1){
+				if(array[testR][testC-1]=='O'){
+					neighbors++;
+				}
+			}
+			else{
+				if(array[testR][cols-1]=='O'){
+					neighbors++;
+				}
+			}//end left side
+			
+			//bottom
+			if(testR<rows-1){
+				if(array[testR+1][testC]=='O'){
+					neighbors++;
+				}
+			}
+			else{
+				if(array[0][testC]=='O'){
+					neighbors++;
+				}
+			}//end bottom
+		
+			//top-right
+			if(testR>0&&testC<cols-1){
+				if(array[testR-1][testC+1]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR==0&&testC<cols-1){
+				if(array[rows-1][testC+1]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR>0&&testC==cols-1){
+				if(array[testR-1][0]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR==0&&testC==cols-1){
+				if(array[rows-1][0]=='O'){
+					neighbors++;
+				}
+			}//end top-right
+			
+			//top-left
+			if(testR>0&&testC>0){
+				if(array[testR-1][testC-1]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR>0&&testC==0){
+				if(array[testR-1][cols-1]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR==0&&testC>0){
+				if(array[rows-1][testC-1]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR==0&&testC==0){
+				if(array[rows-1][cols-1]=='O'){
+					neighbors++;
+				}
+			}//end top-left
+			
+			//bottom-left
+			if(testR<rows-1&&testC>0){
+				if(array[testR+1][testC-1]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR<rows-1&&testC==0){
+				if(array[testR+1][cols-1]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR==rows-1&&testC>0){
+				if(array[0][testC-1]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR==rows-1&&testC==0){
+				if(array[0][cols-1]=='O'){
+					neighbors++;
+				}
+			}//end bottom-left
+			
+			//bottom-right
+			if(testR<rows-1&&testC<cols-1){
+				if(array[testR+1][testC+1]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR<rows-1&&testC==cols-1){
+				if(array[testR+1][0]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR==rows-1&&testC<cols-1){
+				if(array[0][testC+1]=='O'){
+					neighbors++;
+				}
+			}
+			else if(testR==rows-1&&testC==cols-1){
+				if(array[0][0]=='O'){
+					neighbors++;
+				}
+			}//end bottom-right
+		}//end valid cell if
+		
+		return neighbors;
+	}//end neighborCount
+
+	
+	//creates temporary new array, first makes it empty (full of '.')
+	//then transfers cells if and only if they grow or survive
+	//finally sets the old array = temp array
+	public void update() {
+		char[][] temp = new char[rows][cols];
+		for (int i=0; i<rows; i++){
+			for (int j=0; j<cols; j++){
+				temp[i][j]= '.';
+			}
+		}//end setting temp empty
+		
+		for(int i=0; i<rows; i++){
+			for(int j=0; j<cols; j++){
+				int neighbors = neighborCount(i,j);
+				
+				if(array[i][j]=='O'){
+					if(neighbors<2||neighbors>3){
+						temp[i][j]='.';
+					}
+					else{
+						temp[i][j]='O';
+					}
+				}//end existing cell if
+				
+				else {
+					if(neighbors==3){
+						temp[i][j]='O';
+					}
+				}//end empty cell else
+				
+			}//end column for
+		}//end row for
+		array = temp;
+		//updates generation # for text version
+		generation++;
+	}//end update
+
+}//end class

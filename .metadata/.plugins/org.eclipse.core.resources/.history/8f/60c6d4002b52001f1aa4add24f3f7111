@@ -1,0 +1,78 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+
+public class Boggle {
+	
+	private DiceTray tray;
+	private int score;
+	private ArrayList<String> wordsPossible;
+	private ArrayList<String> wordsRight;
+	private ArrayList<String> wordsFound;
+	
+	public Boggle(){
+		tray = new DiceTray();
+		score = 0;
+	}
+	
+	public void setDiceTray(DiceTray dt){
+		this.tray = dt;
+	}
+	
+	public String getDiceTrayAsString(){
+		return tray.toString();
+	}
+	
+	public void buildPossible(){
+		Scanner scan = null;
+		try {
+			scan = new Scanner(new File("BoggleWords.txt"));
+		} catch (FileNotFoundException e) {
+		}
+		while(scan.hasNext()){
+			String cur = scan.next();
+			if(tray.stringFound(cur)){
+				wordsPossible.add(cur);
+			}
+		}
+	}
+	
+	public void addGuess(String guess){
+		if(!wordsFound.contains(guess)) wordsFound.add(guess);
+	}
+	
+	public void buildWordsRight(){
+		for(int i=0; i<wordsFound.size(); i++){
+			if(wordsPossible.contains(wordsFound.get(i))){
+				String temp = wordsFound.get(i);
+				wordsFound.remove(temp);
+				wordsPossible.remove(temp);
+				wordsRight.add(temp);
+				if(temp.length()<5) score ++;
+				else if(temp.length()==5) score+=2;
+				else if(temp.length()==6) score+=3;
+				else if(temp.length()==7) score+=5;
+				else score+=11;
+			}
+		}
+	}
+	
+	public int getScore(){
+		return score;
+	}
+	
+	public List<String> getWordsFound(){
+		return (List<String>) wordsRight;
+	}
+	
+	public List<String> getWordsIncorrect(){
+		return (List<String>) wordsFound;
+	} 
+	
+	public List<String> getWordsNotGuessed(){
+		return (List<String>) wordsPossible;
+	}
+}

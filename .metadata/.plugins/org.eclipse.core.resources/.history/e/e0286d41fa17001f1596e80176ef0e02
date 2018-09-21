@@ -1,0 +1,23 @@
+
+public class Diophantine {
+	
+	public int problem4(){
+		String result = "";
+		int c=1;
+		int ways = 1;
+		while(ways<=3){
+			for(c=1; c<100; c++){
+				for(int x=1; x<100; x++){
+					for(int y=1; y<100; y++){
+						for(int z=1; z<100; z++){
+							if(x*x+y*y+z*z==c){
+								ways++;
+							}
+						}
+					}
+				}
+			}
+		}
+		return c;
+	}
+}

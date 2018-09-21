@@ -1,0 +1,14 @@
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		Prime test = new Prime(10);
+		
+		long testNum = (long) (Math.pow(2, 128)-1);
+		System.out.println(testNum);
+		test.isPrime(testNum);
+		
+	}
+
+}

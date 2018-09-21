@@ -1,0 +1,67 @@
+import java.util.Scanner;
+
+public class RecursionFun {
+
+	public int fibonacci(int n) {
+		if (n == 1)
+			return 1;
+		else if (n == 2)
+			return 1;
+		else
+			return fibonacci(n - 1) + fibonacci(n - 2);
+	}
+
+	public double addReciprocal(int n) {
+		if (n == 1)
+			return 1.0;
+		else
+			return 1.0 / n + addReciprocal(n - 1);
+	}
+
+	public int combinations(int n, int k) {
+		if (k == 1)
+			return n;
+		if (n == k)
+			return 1;
+		else
+			return combinations(n - 1, k - 1) + combinations(n - 1, k);
+	}
+
+	public int GCD(int m, int n) {
+		int absM = Math.abs(m);
+		int absN = Math.abs(n);
+		if(m==0) return n;
+		if(n==0) return m;
+		else{ 
+			int min = Math.min(absN, absM);
+			int max = Math.max(absN, absM);
+			return GCD(min, max%min);
+		}
+	}
+	
+	public String subsentence(String sentence, int first, int last){
+		int word = 0;
+		if(first>last) return "";
+		else if(!sentence.equals("")){
+			Scanner scan = new Scanner(sentence);
+			String curWord;
+			curWord = scan.next();
+			word++;
+			if(first==last) return curWord;
+			else if(word==first) return curWord + " " + subsentence(sentence.substring(curWord.length()), first+1, last);
+			else return subsentence(sentence.substring(curWord.length()), first+1, last);
+		}
+		else return "";
+	
+	}
+
+	public String intWithCommas(int n) {
+		return null;
+	}
+	
+	public int sumArray(int[]array, int begin, int end){
+		if(begin>end) return 0;
+		else return array[begin] + sumArray(array, begin+1, end);
+	}
+	
+}

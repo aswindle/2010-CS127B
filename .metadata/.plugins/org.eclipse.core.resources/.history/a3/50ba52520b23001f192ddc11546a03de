@@ -1,0 +1,14 @@
+
+public class Runner {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		Diophantine hw = new Diophantine();
+		
+		System.out.println("9:"+hw.problem9a());
+		//System.out.println("10:"+hw.problem10a2());
+	}
+
+}

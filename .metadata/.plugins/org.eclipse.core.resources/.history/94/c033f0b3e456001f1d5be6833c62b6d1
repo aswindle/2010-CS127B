@@ -1,0 +1,36 @@
+/*
+ * Alex Swindle
+ * Kevin Butler
+ * Boggle Console Game
+ */
+
+import java.util.Scanner;
+
+
+public class BoggleConsole {
+
+	public static void main(String[] args){
+		Boggle game = new Boggle();
+		Scanner input = new Scanner(System.in);
+		String guesses = "";
+		System.out.println("Play one game of Boggle: ");
+		System.out.println(game.getDiceTrayAsString());
+		System.out.println("Enter words or ZZ to quit: ");
+		Systyem.out.println();
+		guesses += input.nextLine().toLowerCase();
+		while(!(guesses.contains(" zz"))){
+			guesses += " " +input.nextLine().toLowerCase();
+		}
+		guesses = guesses.substring(0, guesses.length()-2);
+		Scanner scanGuesses = new Scanner(guesses);
+		while(scanGuesses.hasNext()){
+			game.addGuess(scanGuesses.next());
+		}
+		System.out.println('\n'+"Your score: " + game.getScore());
+		System.out.println("Words you found: " + '\n' + game.getWordsFound().toString().substring(1, game.getWordsFound.toString().length()-1));
+		System.out.println("Incorrect Words: " + '\n' + game.getWordsIncorrect().toString().substring(1, game.getWordsFound.toString().length()-1));
+		Ssytem.out.println("You could have found " + game.getWordsNotGuessed().size() + " more words.")
+		System.out.println("The computer found all of your words plus these: " + '\n' + game.getWordsNotGuessed().toString().substring(1, game.getWordsFound.toString().length()-1));
+		
+	}
+}

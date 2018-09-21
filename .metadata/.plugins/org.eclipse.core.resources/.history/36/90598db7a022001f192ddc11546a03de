@@ -1,0 +1,413 @@
+/**
+ * MineSweeper
+ *
+ * @author: Alexander "Apollon" Jerabek
+ *
+ *          All of the methods are necessary for the model to implement for a
+ *          fully functional GUI to exist. TODO All methods are written as stubs
+ *          so the code compiles. TODO Complete all methods so they always do
+ *          the right thing
+ */
+import java.util.Random;
+
+public class MineSweeper implements MineSweeperModel {
+
+
+	private final int EMPTY = 0;
+	private final int NUMBER = 1;
+	private final int MINE = 2;
+	private Tile[][] board;
+	private boolean lost;
+	private boolean won;
+	private int numMines;
+	private int rows;
+	private int cols;
+	
+	public MineSweeper(boolean[][] booleanBoard) {
+		lost = false;
+		won = false;
+		rows = booleanBoard.length;
+		cols = booleanBoard[0].length;
+        board = new Tile[rows][cols];
+        numMines = 0;
+        for(int row = 0; row<rows; row++){
+        	for(int col = 0; col<cols; col++){
+        		if(booleanBoard[row][col]==true){
+        			board[row][col].setType(MINE);
+        			numMines++;
+        		}
+        	}
+        }
+        countNeighbors();
+                
+    }
+
+    // This constructor is required for 100% problem coverage (and to run the
+    // GUI)
+    public MineSweeper(int newRows, int newColumns, int totalMines) {
+    	lost =false;
+    	won = false;
+    	rows = newRows;
+    	cols = newColumns;
+        board = new Tile[rows][cols];
+        Random generator = new Random();
+        int minesPlaced = 0;
+        if(totalMines>0){
+        	while(minesPlaced<totalMines){
+        		int r = generator.nextInt(rows);
+        		int c = generator.nextInt(cols);
+        		if(board[r][c].getType()!=MINE){
+        			board[r][c].setType(MINE);
+        			minesPlaced++;
+        		}
+        	}
+        }
+        countNeighbors();
+    }
+
+    /**
+     * This method alerts the Game Board the user has clicked on the square at
+     * the given row/column. There are three possibilities:
+     *
+     * 1) The square is a mine.
+     *
+     * 2) The square is a square next to a mine (a "number" square.)
+     *
+     * 3) The square is not adjacent to any mines (a "blank" square.)
+     *
+     * Because MineSweeper automatically clears all squares adjacent to any
+     * blank square connected to the square clicked, a special algorithm is
+     * needed to set the proper part of the board visible. The psuedo-code shows
+     * the suggested algorithm on the project specification.
+     *
+     * @param row
+     *            - An int value representing the row (x) value in the game
+     *            board.
+     *
+     * @param column
+     *            - An int value representing the column (y)
+     *
+     *            value in the game board.
+     *
+     */
+    public void click(int row, int col) {
+         // TODO: Implement this suggested algorithm
+         // Check special cases first
+         // ----if square is a mine
+         // ------record loss
+         // ----if square is visible or flagged
+		 // ------return // nothing to do
+		 // ----else if square has 1 or more mines near it
+		 // ------mark square as visible
+		 // ----else
+         // ------push the square onto the stack
+         // ------mark square as visible
+         // ------while the stack is not empty
+         // --------pop the stack and mark square as current location
+         // --------if square is a number
+         // ----------do nothing
+         // --------else // square has no mines
+         // ----------for each adjacent square
+         // ------------if it's visible or flagged
+         // ---------------ignore it
+         // ------------else
+         // ---------------push on stack
+         // ---------------mark square as visible
+    	LinkedStack<Tile> stack = new LinkedStack<Tile>();
+    	Tile current = board[row][col];
+    	current.setVisible();
+    	if(current.getType()==MINE){
+    		lost = true;
+    		return;
+    	}
+    	else if(current.getType()==NUMBER){
+    		return;
+    	}
+    	else{
+    		stack.push(current);
+    		//check top left
+    		if(row-1>0&&col-1>0){
+    			if(board[row-1][col-1].getType()==EMPTY){
+    				stack.push(board[row-1][col-1]);
+    			}
+    			else{
+    				board[row-1][col-1].isVisible();
+    			}
+    		}
+    		//check left
+    		if(col-1>0){
+    			if(board[row][col-1].getType()==EMPTY){
+    				stack.push(board[row][col-1]);
+    			}
+    			else{
+    				board[row-1][col].isVisible();
+    			}
+    		}
+    		//check bottom-left
+    		if(row+1<rows&&col-1>0){
+    			if(board[row+1][col-1].getType()==EMPTY){
+    				stack.push(board[row+1][col-1]);
+    			}
+    			else{
+    				board[row+1][col-1].isVisible();
+    			}
+    		}
+    		//check bottom
+    		if(row+1<rows){
+    			if(board[row+1][col].getType()==EMPTY){
+    				stack.push(board[row+1][col]);
+    			}
+    			else{
+    				board[row+1][col].isVisible();
+    			}
+    		}
+    		//check bottom-right
+    		if(row+1<rows&&col+1<cols){
+    			if(board[row+1][col+1].getType()==EMPTY){
+    				stack.push(board[row+1][col+1]);
+    			}
+    			else{
+    				board[row+1][col+1].isVisible();
+    			}
+    		}
+    		//check right
+    		if(col+1<cols){
+    			if(board[row][col+1].getType()==EMPTY){
+    				stack.push(board[row][col+1]);
+    			}
+    			else{
+    				board[row][col+1].isVisible();
+    			}
+    		}
+    		//check top-right
+    		if(row-1>0&&col+1<cols){
+    			if(board[row-1][col+1].getType()==EMPTY){
+    				stack.push(board[row-1][col+1]);
+    			}
+    			else{
+    				board[row-1][col+1].isVisible();
+    			}
+    		}
+    		//check top
+    		if(row-1>0){
+    			if(board[row-1][col].getType()==MINE){
+    				stack.push(board[row-1][col]);
+    			}
+    			else{
+    				board[row-1][col].isVisible();
+    			}
+    		}	
+    	}
+    }
+
+    /**
+     * getAdjacentMines returns the number of mines surrounding the current
+     * square (the "number" on the square. A square with a mine need not know
+     * the correct number of surrounding mines, as it will never display that
+     * information.
+     *
+     * @param row
+     *            - An int value representing the row (x) value in the game
+     *            board.
+     *
+     * @param column
+     *            - An int value representing the column (y) value in the game
+     *            board.
+     *
+     * @return The number of mines next to this square.
+     */
+    public int getAdjacentMines(int row, int column) {
+        return board[row][column].getNeighbors();
+    }
+
+    /**
+     * Returns a textual representation of the GameBoard. Squares will be
+     * represented by one character followed by a space, except the last
+     * character which will have no following space. Squares will either be the
+     * number of mines next to the square (0) if no mines are adjacent, or a '*'
+     * character for a mine. Newlines will separate each row of the game board.
+     *
+     * @return A String representation of the game board data.
+     */
+    public String toString() {
+        // TODO Complete for a textual view
+        return "under construction";
+    }
+
+    /**
+     * This method returns the number of mines found in the game board.
+     *
+     * @return The number of mines.
+     */
+    public int getTotalMineCount() {
+        return numMines;
+    }
+
+    /**
+     * This method determines if the square in question is a mine.
+     *
+     * @param row
+     *            - An int value representing the row (x) value in the game
+     *            board.
+     *
+     * @param column
+     *            - An int value representing the column (y) value in the game
+     *            board.
+     *
+     * @return A boolean representing the mine status of the square.
+     */
+    public boolean isMine(int row, int column) {
+        if(board[row][column].getType()==MINE){
+        	return true;
+        }
+    	return false;
+    }
+
+    /**
+     * This method gets the visibility of the square in question. Visibilty is
+     * initially defined for all squares to be false and uncovered when the
+     * click method checks the square.
+     *
+     * @param row
+     *            - An int value representing the row (x) value in the game
+     *            board.
+     *
+     * @param column
+     *            - An int value representing the column (y) value in the game
+     *            board.
+     *
+     * @return A boolean representing whether or not the square is set to be
+     *         visible.
+     */
+
+    public boolean isVisible(int row, int column) {
+        return board[row][column].isVisible();
+    }
+
+    /**
+     * This method returns whether or not the square has been flagged by the
+     * user. Flags are a tool used by players to quickly tell which squares they
+     * think contain mines as well as prevent accidental clicking on those
+     * squares.
+     *
+     * @param row
+     *            - An int value representing the row (x) value in the game
+     *            board.
+     *
+     * @param column
+     *            - An int value representing the column (y) value in the game
+     *            board.
+     *
+     * @return A boolean value representing the flagged state of this location.
+     */
+    public boolean isFlagged(int row, int column) {
+        return board[row][column].isFlagged();
+    }
+
+    /**
+     * This method toggles whether or not the square has been flagged by the
+     * user. Flags are a tool used by players to quickly tell which squares they
+     * think contain mines as well as prevent accidental clicking on those
+     * squares. If the flagged attribute is false, this message makes it true.
+     * If the flagged attribute is true, this message makes it false.
+     *
+     * @param row
+     *            - An int value representing the row (x) value in the game
+     *            board.
+     *
+     * @param column
+     *            - An int value representing the column (y) value in the game
+     *            board.
+     */
+    public void toggleFlagged(int row, int column) {
+    	Tile toggled = board[row][column];
+        boolean flagged = toggled.isFlagged();
+        if(flagged){
+        	toggled.setFlagged(false);
+        }
+        else{
+        	toggled.setFlagged(true);
+        }
+    }
+
+    /**
+     * This method determines if the player has lost on the current board. A
+     * player loses if and only if they have clicked on a mine.
+     *
+     * @return A boolean representing player failure.
+     */
+    public boolean lost() {
+        return lost;
+    }
+
+    /**
+     * This method determines if a player has won the game. Winning means all
+     * non-mine squares are visible and no mines have been detonated.
+     *
+     * @return A boolean representing whether or not the player has won.
+     */
+    public boolean won() {
+        return won;
+    }
+    
+    public void countNeighbors(){
+    	for(int row=0; row<rows; row++){
+        	for(int col=0; col<cols; col++){
+        		int neighbors = 0;
+        		//check top left
+        		if(row-1>0&&col-1>0){
+        			if(board[row-1][col-1].getType()==MINE){
+        				neighbors++;
+        			}
+        		}
+        		//check left
+        		if(col-1>0){
+        			if(board[row][col-1].getType()==MINE){
+        				neighbors++;
+        			}
+        		}
+        		//check bottom-left
+        		if(row+1<rows&&col-1>0){
+        			if(board[row+1][col-1].getType()==MINE){
+        				neighbors++;
+        			}
+        		}
+        		//check bottom
+        		if(row+1<rows){
+        			if(board[row+1][col].getType()==MINE){
+        				neighbors++;
+        			}
+        		}
+        		//check bottom-right
+        		if(row+1<rows&&col+1<cols){
+        			if(board[row+1][col+1].getType()==MINE){
+        				neighbors++;
+        			}
+        		}
+        		//check right
+        		if(col+1<cols){
+        			if(board[row][col+1].getType()==MINE){
+        				neighbors++;
+        			}
+        		}
+        		//check top-right
+        		if(row-1>0&&col+1<cols){
+        			if(board[row-1][col+1].getType()==MINE){
+        				neighbors++;
+        			}
+        		}
+        		//check top
+        		if(row-1>0){
+        			if(board[row-1][col].getType()==MINE){
+        				neighbors++;
+        			}
+        		}
+        		board[row][col].setNeighbors(neighbors);
+        		if(neighbors>0){
+        			board[row][col].setType(NUMBER);
+        		}
+        	}
+        }
+
+    }
+}

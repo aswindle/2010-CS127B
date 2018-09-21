@@ -1,0 +1,344 @@
+/**
+ * MineSweeper
+ *
+ * @author: Alexander "Apollon" Jerabek
+ *
+ *          All of the methods are necessary for the model to implement for a
+ *          fully functional GUI to exist. TODO All methods are written as stubs
+ *          so the code compiles. TODO Complete all methods so they always do
+ *          the right thing
+ */
+import java.util.Random;
+
+public class MineSweeper implements MineSweeperModel {
+
+	private final int EMPTY = 0;
+	private final int NUMBER = 1;
+	private final int MINE = 2;
+	private Tile[][] board;
+	private boolean lost;
+	private boolean won;
+	private int numMines;
+	private int rows;
+	private int cols;
+	private int nonMines;
+	private int tilesVisible;
+
+	public MineSweeper(boolean[][] booleanBoard) {
+		lost = false;
+		won = false;
+		rows = booleanBoard.length;
+		cols = booleanBoard[0].length;
+		board = new Tile[rows][cols];
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				board[i][j] = new Tile();
+			}
+		}
+		numMines = 0;
+		for (int row = 0; row < rows; row++) {
+			for (int col = 0; col < cols; col++) {
+				if (booleanBoard[row][col] == true) {
+					board[row][col].setType(MINE);
+					numMines++;
+				}
+			}
+		}
+		nonMines = rows * cols - numMines;
+		tilesVisible = 0;
+		countNeighbors();
+
+	}
+
+	// This constructor is required for 100% problem coverage (and to run the
+	// GUI)
+	public MineSweeper(int newRows, int newColumns, int totalMines) {
+		lost = false;
+		won = false;
+		rows = newRows;
+		cols = newColumns;
+		board = new Tile[rows][cols];
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				board[i][j] = new Tile();
+			}
+		}
+		Random generator = new Random();
+		int minesPlaced = 0;
+		if (totalMines > 0) {
+			while (minesPlaced < totalMines) {
+				int r = generator.nextInt(rows);
+				int c = generator.nextInt(cols);
+				if (board[r][c].getType() != MINE) {
+					board[r][c].setType(MINE);
+					minesPlaced++;
+				}
+			}
+		}
+		nonMines = rows * cols - numMines;
+		tilesVisible = 0;
+		countNeighbors();
+	}
+
+	/**
+	 * This method alerts the Game Board the user has clicked on the square at
+	 * the given row/column. There are three possibilities:
+	 * 
+	 * 1) The square is a mine.
+	 * 
+	 * 2) The square is a square next to a mine (a "number" square.)
+	 * 
+	 * 3) The square is not adjacent to any mines (a "blank" square.)
+	 * 
+	 * Because MineSweeper automatically clears all squares adjacent to any
+	 * blank square connected to the square clicked, a special algorithm is
+	 * needed to set the proper part of the board visible. The psuedo-code shows
+	 * the suggested algorithm on the project specification.
+	 * 
+	 * @param row
+	 *            - An int value representing the row (x) value in the game
+	 *            board.
+	 * 
+	 * @param column
+	 *            - An int value representing the column (y)
+	 * 
+	 *            value in the game board.
+	 * 
+	 */
+	public void click(int row, int col) {
+		// TODO: Implement this suggested algorithm
+		// Check special cases first
+		// ----if square is a mine
+		// ------record loss
+		// ----if square is visible or flagged
+		// ------return // nothing to do
+		// ----else if square has 1 or more mines near it
+		// ------mark square as visible
+		// ----else
+		// ------push the square onto the stack
+		// ------mark square as visible
+		// ------while the stack is not empty
+		// --------pop the stack and mark square as current location
+		// --------if square is a number
+		// ----------do nothing
+		// --------else // square has no mines
+		// ----------for each adjacent square
+		// ------------if it's visible or flagged
+		// ---------------ignore it
+		// ------------else
+		// ---------------push on stack
+		// ---------------mark square as visible
+		LinkedStack<Tile> stack = new LinkedStack<Tile>();
+		Tile current = board[row][col];
+		if (current.getType() == MINE) {
+			lost = true;
+		} else if (current.isVisible() == true || current.isFlagged() == true) {
+			return;
+		} else if (current.getType() == NUMBER) {
+			current.setVisible();
+			return;
+		} else {
+			current.setVisible();
+			stack.push(current);
+			tilesVisible++;
+			while (!stack.isEmpty()) {
+				current = stack.pop();
+				if (current.getType() != NUMBER) {
+					// check top left
+					if (row - 1 > 0 && col - 1 > 0) {
+						if (board[row - 1][col - 1].isVisible() == false
+								&& board[row - 1][col - 1].isFlagged() == false) {
+							board[row - 1][col - 1].setVisible();
+							tilesVisible++;
+							stack.push(board[row - 1][col - 1]);
+						}
+					}
+					// check left
+					if (col - 1 > 0) {
+						if (board[row][col - 1].isVisible() == false
+								&& board[row][col - 1].isFlagged() == false) {
+							board[row][col - 1].setVisible();
+							tilesVisible++;
+							stack.push(board[row][col - 1]);
+						}
+					}
+					// check bottom-left
+					if (row + 1 < rows && col - 1 > 0) {
+						if (board[row + 1][col - 1].isVisible() == false
+								&& board[row + 1][col - 1].isFlagged() == false) {
+							board[row + 1][col - 1].setVisible();
+							tilesVisible++;
+							stack.push(board[row + 1][col - 1]);
+						}
+					}
+					// check bottom
+					if (row + 1 < rows) {
+						if (board[row + 1][col].isVisible() == false
+								&& board[row + 1][col].isFlagged() == false) {
+							board[row + 1][col].setVisible();
+							tilesVisible++;
+							stack.push(board[row + 1][col]);
+						}
+					}
+					// check bottom-right
+					if (row + 1 < rows && col + 1 < cols) {
+						if (board[row + 1][col + 1].isVisible() == false
+								&& board[row + 1][col + 1].isFlagged() == false) {
+							board[row + 1][col + 1].setVisible();
+							tilesVisible++;
+							stack.push(board[row + 1][col + 1]);
+						}
+					}
+					// check right
+					if (col + 1 < cols) {
+						if (board[row][col + 1].isVisible() == false
+								&& board[row][col + 1].isFlagged() == false) {
+							board[row][col + 1].setVisible();
+							tilesVisible++;
+							stack.push(board[row][col + 1]);
+						}
+					}
+					// check top-right
+					if (row - 1 > 0 && col + 1 < cols) {
+						if (board[row - 1][col + 1].isVisible() == false
+								&& board[row - 1][col + 1].isFlagged() == false) {
+							board[row - 1][col + 1].setVisible();
+							tilesVisible++;
+							stack.push(board[row - 1][col + 1]);
+						}
+					}
+					// check top
+					if (row - 1 > 0) {
+						if (board[row - 1][col].isVisible() == false
+								&& board[row - 1][col].isFlagged() == false) {
+							board[row - 1][col].setVisible();
+							tilesVisible++;
+							stack.push(board[row - 1][col]);
+						}
+					}
+
+				}// end if not NUMBER
+			}// end while loop
+		}// end empty else
+	}// end click method
+
+	public int getAdjacentMines(int row, int column) {
+		return board[row][column].getNeighbors();
+	}
+
+	public String toString() {
+		// TODO Complete for a textual view
+		return "under construction";
+	}
+
+	public int getTotalMineCount() {
+		return numMines;
+	}
+
+	public boolean isMine(int row, int column) {
+		if (board[row][column].getType() == MINE) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isVisible(int row, int column) {
+		return board[row][column].isVisible();
+	}
+
+	public boolean isFlagged(int row, int column) {
+		return board[row][column].isFlagged();
+	}
+
+	public void toggleFlagged(int row, int column) {
+		Tile toggled = board[row][column];
+		boolean flagged = toggled.isFlagged();
+		if (flagged) {
+			toggled.setFlagged(false);
+		} else {
+			toggled.setFlagged(true);
+		}
+	}
+
+	public boolean lost() {
+		return lost;
+	}
+
+	/**
+	 * This method determines if a player has won the game. Winning means all
+	 * non-mine squares are visible and no mines have been detonated.
+	 * 
+	 * @return A boolean representing whether or not the player has won.
+	 */
+	public boolean won() {
+		if (tilesVisible == nonMines) {
+			won = true;
+		}
+		return won;
+	}
+
+	public void countNeighbors() {
+		for (int row = 0; row < rows; row++) {
+			for (int col = 0; col < cols; col++) {
+				int neighbors = 0;
+				// check top left
+				if (row - 1 > 0 && col - 1 > 0) {
+					if (board[row - 1][col - 1].getType() == MINE) {
+						neighbors++;
+					}
+				}
+				// check left
+				if (col - 1 > 0) {
+					if (board[row][col - 1].getType() == MINE) {
+						neighbors++;
+					}
+				}
+				// check bottom-left
+				if (row + 1 < rows && col - 1 > 0) {
+					if (board[row + 1][col - 1].getType() == MINE) {
+						neighbors++;
+					}
+				}
+				// check bottom
+				if (row + 1 < rows) {
+					if (board[row + 1][col].getType() == MINE) {
+						neighbors++;
+					}
+				}
+				// check bottom-right
+				if (row + 1 < rows && col + 1 < cols) {
+					if (board[row + 1][col + 1].getType() == MINE) {
+						neighbors++;
+					}
+				}
+				// check right
+				if (col + 1 < cols) {
+					if (board[row][col + 1].getType() == MINE) {
+						neighbors++;
+					}
+				}
+				// check top-right
+				if (row - 1 > 0 && col + 1 < cols) {
+					if (board[row - 1][col + 1].getType() == MINE) {
+						neighbors++;
+					}
+				}
+				// check top
+				if (row - 1 > 0) {
+					if (board[row - 1][col].getType() == MINE) {
+						neighbors++;
+					}
+				}
+				board[row][col].setNeighbors(neighbors);
+				if (neighbors > 0 && board[row][col].getType() != MINE) {
+					board[row][col].setType(NUMBER);
+				}
+			}
+		}
+
+	}
+
+	public Tile getTileAt(int row, int column) {
+		return board[row][column];
+	}
+}

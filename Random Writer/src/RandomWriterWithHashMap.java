@@ -1,0 +1,86 @@
+/*
+ * Alex Swindle
+ * C SC 127B
+ * Section Leader: Andrew Emmott
+ * 4/21/10
+ * Random Writer assignment
+ */
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class RandomWriterWithHashMap {
+
+	// main method
+	public static void main(String[] args) {
+		RandomWriterWithHashMap rw = new RandomWriterWithHashMap(
+				"alicetest.txt", 2);
+		rw.printRandom(50);
+	}
+
+	// instance vars
+	private int seedLength;
+	private String fileName;
+	private String text;
+	private HashMap<String, ArrayList<Character>> map;
+
+	// constructor; builds the map, appends extra copy of the first seed to
+	// avoid null pointers later
+	public RandomWriterWithHashMap(String name, int length) {
+		fileName = name;
+		seedLength = length;
+		text = textString();
+		text += text.substring(0, seedLength);
+		map = new HashMap<String, ArrayList<Character>>();
+		buildMap();
+	}
+
+	// puts the entire text file into a one-line string using StringBuilder
+	// class
+	private String textString() {
+		Scanner scan = null;
+		try {
+			scan = new Scanner(new File(fileName));
+		} catch (FileNotFoundException e) {
+		}
+		StringBuilder tempText = new StringBuilder("");
+		while (scan.hasNextLine()) {
+			tempText.append(scan.nextLine() + " ");
+		}
+		return tempText.toString();
+	}
+
+	// builds map by scanning chunks of the text of length seedLength, then
+	// moving move character and repeating
+	private void buildMap() {
+		for (int i = 0; i < (text.length() - seedLength); i++) {
+			String key = text.substring(i, i + seedLength);
+			if (!map.containsKey(key)) {
+				map.put(key, new ArrayList<Character>());
+			}
+			map.get(key).add(text.charAt(i + seedLength));
+		}
+	}
+
+	/*
+	 * prints num seeds and characters uses 2 random calls: 1 to pick a random
+	 * first seed second one picks a random character that follows that seed and
+	 * appends it
+	 */
+	public void printRandom(int num) {
+		int randStart = (int) (Math.random() * (text.length() - seedLength));
+		String randKey = text.substring(randStart, randStart + seedLength);
+		String randText = randKey;
+		for (int i = 0; i < num; i++) {
+			char randChar = map.get(randKey).get(
+					(int) (Math.random() * (map.get(randKey).size())));
+			randText += randChar;
+			randKey = randText.substring(randText.length() - seedLength);
+		}
+		System.out.println(randText);
+	}
+
+}

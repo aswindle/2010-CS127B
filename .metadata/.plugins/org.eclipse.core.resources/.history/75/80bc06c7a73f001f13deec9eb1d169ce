@@ -1,0 +1,32 @@
+
+public class EncounterRunner {
+
+	//MonsterSheet(String setName, int setHP, int setAC, int init, int speed, int ref, int fort, int will)
+	//setMelee(int vsAC, int numDie, int type, int constant)
+
+	public static void main(String[]args){
+		
+		MonsterSheet drake1 = new MonsterSheet("Guard Drake 1", 48, 15, 3, 6, 13, 15, 12);
+		drake1.setMelee(6, 1, 10, 3);
+		
+		MonsterSheet drake2 = new MonsterSheet("Guard Drake 2", 48, 15, 3, 6, 13, 15, 12);
+		drake2.setMelee(6, 1, 10, 3);
+		
+		MonsterSheet sharpshooter1 = new MonsterSheet("Harley Quinn", 31, 16, 5, 6, 16, 14, 13);
+		sharpshooter1.setMelee(6, 1, 6, 2);
+		sharpshooter1.setRanged(9, 1, 8, 4);
+		
+		MonsterSheet sharpshooter2 = new MonsterSheet("Riddler", 31, 16, 5, 6, 16, 14, 13);
+		sharpshooter2.setMelee(6, 1, 6, 2);
+		sharpshooter2.setRanged(9, 1, 8, 4);
+		
+		MonsterSheet sharpshooter3 = new MonsterSheet("Ra's Al Ghul", 31, 16, 5, 6, 16, 14, 13);
+		sharpshooter3.setMelee(6, 1, 6, 2);
+		sharpshooter3.setRanged(9, 1, 8, 4);
+	
+		sharpshooter2.takeHit(9);
+		
+		
+		
+	}
+}
